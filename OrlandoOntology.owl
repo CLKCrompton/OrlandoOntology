@@ -4,84 +4,303 @@
    xmlns:owl="http://www.w3.org/2002/07/owl#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:vann="http://purl.org/vocab/vann/"
    xmlns:xml="http://www.w3.org/XML/1998/namespace"
-   xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-   xmlns="http://www.semanticweb.org/jsimpson/ontologies/2014/10/untitled-ontology-70#" xml:base="http://cwrc.ca/orlandont">
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema#"  
+   xmlns:loc="http://id.loc.gov/vocabulary/relators/" 
+   xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:foaf="http://xmlns.com/foaf/0.1/"
+   xmlns:dbpedia="http://dbpedia.org/resource/"
+   xmlns:cc = "http://creativecommons.org/ns#"
+   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+   xmlns:void="http://rdfs.org/ns/void#"
+   xmlns="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology.owl#" 
+   xml:base="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology.owl#"
+   xmlns:cwrc="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology.owl#">
+ 
+   <owl:Ontology rdf:about="">
+    <dc:title xml:lang="en">The Orlando Ontology</dc:title>
+    <rdfs:label xml:lang="en">The Orlando Ontology</rdfs:label>
+    <foaf:name xml:lang="en">The Orlando Ontology</foaf:name>
+    <dc:title xml:lang="fr">L'Ontologie Orlando</dc:title>
+    <rdfs:label xml:lang="fr">L'Ontologie Orlando</rdfs:label>
+    <foaf:name xml:lang="fr">L'Ontologie Orlando</foaf:name>
+    <dc:description xml:lang="en">The Orlando Ontology is the overall ontology that represents all elements of structure within the Canadian Writing Research Collaboratory.</dc:description>
+    <skos:definition xml:lang="en">The Orlando Ontology is the overall ontology that represents all elements of structure within the Canadian Writing Research Collaboratory.</skos:definition>
+    <rdfs:comment xml:lang="en">The Orlando Ontology is the overall ontology that represents all elements of structure within the Canadian Writing Research Collaboratory.</rdfs:comment>
+    <dc:description xml:lang="en">L'Ontologie Orlando est l'ontologie maîtresse qui représente tous les éléments de la structure du Collaboratoire scientifique des écrits du Canada.</dc:description>
+    <skos:definition xml:lang="en">L'Ontologie Orlando est l'ontologie maîtresse qui représente tous les éléments de la structure du Collaboratoire scientifique des écrits du Canada.</skos:definition>
+    <rdfs:comment xml:lang="en">L'Ontologie Orlando est l'ontologie maîtresse qui représente tous les éléments de la structure du Collaboratoire scientifique des écrits du Canada.</rdfs:comment>  
+    <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.2</owl:versionInfo>
+    <owl:priorVersion rdf:resource=""/>
+    <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">DATE_TODAY</dc:date>
+    <dc:rights rdf:resource="http://creativecommons.org/licenses/by/3.0/"/> 
+    <vs:term_status xml:lang="en">Testing</vs:term_status>
+    <dc:creator>
+     <foaf:Person rdf:about="#JohnSympson">
+      <foaf:name>John Sympson</foaf:name>
+     </foaf:Person>
+    </dc:creator>
+    <dc:creator rdf:resource="http://rdf.muninn-project.org/ww1/2011/11/11/Person/Warren"/>
+    <dc:publisher>
+     <foaf:Organization rdf:about="#cwrc">
+      <foaf:name xml:lang="fr">Le Collaboratoire scientifique des écrits du Canada</foaf:name>
+      <foaf:name xml:lang="en">The Canadian Writing Research Collaboratory</foaf:name>
+     </foaf:Organization>
+    </dc:publisher>
+    <loc:pdr>   
+     <foaf:Person rdf:about="#SusanBrown"> 
+      <foaf:name>Susan Brown</foaf:name>
+     </foaf:Person>
+    </loc:pdr>
+    <loc:fnd>
+     <foaf:Organization rdf:about="#sshrc">
+      <foaf:name xml:lang="en">Social Sciences and Humanities Research Council</foaf:name>
+      <foaf:name xml:lang="fr">Conseil de recherches en sciences humaines</foaf:name>
+      <foaf:nick>SSHRC</foaf:nick>
+     </foaf:Organization>
+    </loc:fnd>
+    <vann:preferredNamespacePrefix>cwrc</vann:preferredNamespacePrefix>
+    <void:inDataset rdf:resource="#datasetdefinition"/>
+   </owl:Ontology>
+ 
+<!-- http://id.loc.gov/vocabulary/relators/ctb -->
+
+   <void:Dataset rdf:about="#datasetdefinition">
+    <dc:title xml:lang="en">The Orlando Ontology</dc:title>
+    <rdfs:label xml:lang="en">The Orlando Ontology</rdfs:label>
+    <foaf:name xml:lang="en">The Orlando Ontology</foaf:name>
+    <dc:title xml:lang="fr">L'Ontologie Orlando</dc:title>
+    <rdfs:label xml:lang="fr">L'Ontologie Orlando</rdfs:label>
+    <foaf:name xml:lang="fr">L'Ontologie Orlando</foaf:name>
+    <dc:description xml:lang="en">The Orlando Ontology is the overall ontology that represents all elements of structure within the Canadian Writing Research Collaboratory.</dc:description>
+    <skos:definition xml:lang="en">The Orlando Ontology is the overall ontology that represents all elements of structure within the Canadian Writing Research Collaboratory.</skos:definition>
+    <rdfs:comment xml:lang="en">The Orlando Ontology is the overall ontology that represents all elements of structure within the Canadian Writing Research Collaboratory.</rdfs:comment>
+    <dc:description xml:lang="en">L'Ontologie Orlando est l'ontologie maîtresse qui représente tous les éléments de la structure du Collaboratoire scientifique des écrits du Canada.</dc:description>
+    <skos:definition xml:lang="en">L'Ontologie Orlando est l'ontologie maîtresse qui représente tous les éléments de la structure du Collaboratoire scientifique des écrits du Canada.</skos:definition>
+    <rdfs:comment xml:lang="en">L'Ontologie Orlando est l'ontologie maîtresse qui représente tous les éléments de la structure du Collaboratoire scientifique des écrits du Canada.</rdfs:comment>
+    <!-- -->
+    <cc:license rdf:resource="http://creativecommons.org/licenses/by/3.0/"/> 
+    <cc:Jurisdiction rdf:resource="http://dbpedia.org/resource/Canada"/>
+    <cc:attributionURL rdf:resource="http://www.cwrc.ca/"/>
+    <dc:creator rdf:resource="#JohnSympson"/>
+    <dc:creator rdf:resource="http://rdf.muninn-project.org/ww1/2011/11/11/Person/Warren"/>
+    <dc:publisher rdf:resource="#cwrc"/>
+    <loc:pdr rdf:resource="#SusanBrown"/> 
+    <loc:fnd rdf:resource="#sshrc"/>
+    <rdfs:isDefinedBy rdf:resource=""/>
+   </void:Dataset>
+
+
   <owl:AnnotationProperty rdf:about="http://attempto.ifi.uzh.ch/ace_lexicon#CN_pl"/>
   <owl:AnnotationProperty rdf:about="http://attempto.ifi.uzh.ch/ace_lexicon#CN_sg"/>
   <owl:AnnotationProperty rdf:about="http://attempto.ifi.uzh.ch/ace_lexicon#TV_pl"/>
   <owl:AnnotationProperty rdf:about="http://attempto.ifi.uzh.ch/ace_lexicon#TV_sg"/>
   <owl:AnnotationProperty rdf:about="http://attempto.ifi.uzh.ch/ace_lexicon#TV_vbg"/>
+
+
+<!-- Geo things -->
+
   <owl:Class rdf:about="#Address">
+    <rdfs:label xml:lang="en">A mailling or street addrese</rdfs:label>
+    <foaf:name xml:lang="en">A mailling or street address</foaf:name>
+    <rdfs:label xml:lang="fr">Une adresse postale ou de rue</rdfs:label>
+    <rdf:comment xml:lang="en">The postal address is the equivalent of a schema.org address and inherits all of the data from that vocabulary to markup a modern postral address.</rdf:comment>
+    <foaf:name xml:lang="fr">A mailling or street address</foaf:name>
+    <owl:sameAs rdf:resource="http://schema.org/PostalAddress"/>
     <ifi:CN_pl>Addresses</ifi:CN_pl>
     <ifi:CN_sg>Address</ifi:CN_sg>
-    <rdfs:subClassOf rdf:resource="#Settlement"/>
+    <rdfs:subClassOf rdf:resource="#Place"/>
   </owl:Class>
+
+  <owl:DeprecatedClass rdf:about="#Geog">
+    <ifi:CN_pl>Geogs</ifi:CN_pl>
+    <ifi:CN_sg>Geog</ifi:CN_sg>
+    <rdf:comment>Deprecated as contents are underspecified.</rdf:comment>
+    <rdfs:subClassOf rdf:resource="#Place"/>
+  </owl:DeprecatedClass>
+
+  <owl:Class rdf:about="#Place">
+    <rdfs:label xml:lang="en">Place</rdfs:label>
+    <rdfs:label xml:lang="fr">Endroit</rdfs:label>
+    <foaf:name xml:lang="en">Place</foaf:name>
+    <foaf:name xml:lang="fr">Endroit</foaf:name>
+    <skos:definition xml:lang="en">A named place, wheter incorporated, settled or occupied.</skos:definition>
+    <rdf:comment xml:lang="en">Could be a populated place according to Geonames, but not necessarily so. Some places, such as cross-roads are named without having a population or settlement per say. The geonames is incosistent in this regards in that a populated place can be abandonned.</rdf:comment>
+    <ifi:CN_pl>Places</ifi:CN_pl>
+    <ifi:CN_sg>Place</ifi:CN_sg>
+    <owl:equivalentClass rdf:resource="http://www.geonames.org/ontology#Feature"/>
+    <owl:equivalentClass rdf:resource="http://dbpedia.org/ontology/Place"/>
+    <owl:equivalentClass rdf:resource="http://schema.org/Place"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+    <owl:sameAs rdf:resource="http://geovocab.org/spatial#Feature"/>
+    <owl:sameAs rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Region">
+    <rdfs:label xml:lang="en">Region</rdfs:label>
+    <rdfs:label xml:lang="fr">Région</rdfs:label>
+    <foaf:name xml:lang="en">Place</foaf:name>
+    <foaf:name xml:lang="fr">Région</foaf:name>
+    <skos:definition xml:lang="en">A region is an loosely defined physical area larger than a place with a looser definition of identity / feature than a place.</skos:definition>
+    <rdf:comment xml:lang="en">It may be a good idea to deprecate this property in favour of Place like schema.org has. The only justification / use case in other vocabulary for this class is an administrative area, which is not the current definition of this class.</rdf:comment> 
+    <ifi:CN_pl>Regions</ifi:CN_pl>
+    <ifi:CN_sg>Region</ifi:CN_sg>
+    <rdfs:subClassOf rdf:resource="#Geog"/>
+    <owl:differentFrom rdf:resource="http://dbpedia.org/ontology/Region"/>
+    <owl:equivalentClass rdf:resource="http://www.geonames.org/ontology#L"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+    <owl:sameAs rdf:resource="http://geovocab.org/spatial#Feature"/>
+    <owl:sameAs rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#Settlement">
+    <rdfs:label xml:lang="en">Settlement</rdfs:label>
+    <rdfs:label xml:lang="fr">Colonie</rdfs:label>
+    <foaf:name xml:lang="en">Settlement</foaf:name>
+    <foaf:name xml:lang="fr">Colonie</foaf:name>
+    <skos:definition xml:lang="en">A colony newly established; a place or region newly settled; as, settlement in the West.</skos:definition>
+    <ifi:CN_pl>Settlements</ifi:CN_pl>
+    <ifi:CN_sg>Settlement</ifi:CN_sg>
+    <rdfs:subClassOf rdf:resource="#Place"/>
+    <owl:equivalentClass rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/> 
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Human_settlement"/>
+  </owl:Class>
+
+  <!-- People -->
+
+  <owl:Class rdf:about="#Person">
+   <owl:comment>A natural person. Does the person need to be an author or will any person do? We can create a new class that consists only of authors.</owl:comment> 
+   <ifi:CN_pl>Authors</ifi:CN_pl>
+   <ifi:CN_sg>Author</ifi:CN_sg>
+   <owl:sameAs rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+   <owl:sameAs rdf:resource="http://erlangen-crm.org/current/E21_Person"/>
+   <owl:sameAs rdf:resource="http://dbpedia.org/ontology/Person"/>
+  </owl:Class>
+
+  <!-- Sex -->
+
+  <owl:Class rdf:about="#Sex">
+   <skos:definition xml:lang="en">The distinguishing peculiarity of male or female in human beings; the physical difference between male and female; the assemblage of properties or qualities by which male is distinguished from female.</skos:definition>
+   <owl:comment xml:lang="en">No longer a subclass of Person.</owl:comment>
+   <rdfs:label xml:lang="en">Sex</rdfs:label>
+   <rdfs:label xml:lang="fr">Sexe</rdfs:label>
+   <foaf:name xml:lang="en">Sex</foaf:name>
+   <foaf:name xml:lang="fr">Sexe</foaf:name> 
+   <ifi:CN_pl>Sexes</ifi:CN_pl>
+   <ifi:CN_sg>Sex</ifi:CN_sg>
+   <owl:equivalentClass rdf:resource="http://dbpedia.org/resource/Sex"/>
+   <owl:sameAs rdf:resource="http://rdf.muninn-project.org/ontologies/appearances#Sex"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+  </owl:Class>
+
+  <cwrc:Sex rdf:about="#Female">
+   <rdfs:label xml:lang="en">Female</rdfs:label>
+   <rdfs:label xml:lang="fr">Femelle</rdfs:label>
+   <foaf:name xml:lang="en">Female</foaf:name>
+   <foaf:name xml:lang="fr">Femelle</foaf:name>
+   <ifi:CN_pl>Females</ifi:CN_pl>
+   <ifi:CN_sg>Female</ifi:CN_sg>
+   <owl:comment xml:lang="en">Changed to an instance of Class Sex from a subclass of Sex. Note that the temptation exists to use the French word Femme instead of Femelle, through this is wrong since Femme would imply the English translation of Woman which is another term.</owl:comment>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <skos:inScheme rdf:resource="#Sex"/> 
+  </cwrc:Sex>
+
+  <cwrc:Sex rdf:about="#Male">
+   <rdfs:label xml:lang="en">Male</rdfs:label>
+   <rdfs:label xml:lang="fr">Mâle</rdfs:label>
+   <foaf:name xml:lang="en">Male</foaf:name>
+   <foaf:name xml:lang="fr">Mâle</foaf:name>    
+   <ifi:CN_pl>Males</ifi:CN_pl>
+   <ifi:CN_sg>Male</ifi:CN_sg>
+   <owl:comment xml:lang="en">Changed to an instance of Class Sex from a subclass of Sex.</owl:comment>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <skos:inScheme rdf:resource="#Sex"/> 
+  </cwrc:Sex>
+
+  <cwrc:Sex rdf:about="#Transsexual">
+   <rdfs:label xml:lang="en">Transsexual</rdfs:label>
+   <rdfs:label xml:lang="fr">Transsexuel</rdfs:label>
+   <foaf:name xml:lang="en">Transsexual</foaf:name>
+   <foaf:name xml:lang="fr">Transsexuel</foaf:name>    
+   <ifi:CN_pl>Transsexual</ifi:CN_pl>
+   <ifi:CN_sg>Transsexuals</ifi:CN_sg>
+   <owl:comment xml:lang="en">Changed to an instance of Class Sex from a subclass of Sex.</owl:comment>
+  </cwrc:Sex>
+
+  <cwrc:Sex rdf:about="#UnknownSex">
+   <rdfs:label xml:lang="en">Unknown Sex</rdfs:label>
+   <rdfs:label xml:lang="fr">Sexe Inconnue</rdfs:label>
+   <foaf:name xml:lang="en">Unknown</foaf:name>
+   <foaf:name xml:lang="fr">Inconnu</foaf:name>        
+   <ifi:CN_pl>UnknownSexes</ifi:CN_pl>
+   <ifi:CN_sg>UnknownSex</ifi:CN_sg>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <skos:inScheme rdf:resource="#Sex"/> 
+  </cwrc:Sex>
+
+<!-- Gender -->
+
+  <owl:Class rdf:about="#Gender">
+   <rdfs:label xml:lang="en">Gender</rdfs:label>
+   <rdfs:label xml:lang="fr">Genre</rdfs:label>
+   <foaf:name xml:lang="en">Gender</foaf:name>
+   <foaf:name xml:lang="fr">Genre</foaf:name>    
+   <owl:comment xml:lang="en">No longer a subclass of person.</owl:comment>
+   <ifi:CN_pl>Genders</ifi:CN_pl>
+   <ifi:CN_sg>Gender</ifi:CN_sg>
+   <owl:equivalentClass rdf:resource="http://dbpedia.org/resource/Gender"/>
+   <owl:sameAs rdf:resource="http://rdf.muninn-project.org/ontologies/appearances#Gender"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme"/>
+  </owl:Class>
+
+
+  <cwrc:Gender rdf:about="#Transgender">
+   <rdfs:label xml:lang="en">Transgender</rdfs:label>
+   <rdfs:label xml:lang="fr">Transgenre</rdfs:label>
+   <foaf:name xml:lang="en">Transgender</foaf:name>
+   <foaf:name xml:lang="fr">Transgenre</foaf:name>
+   <skos:definition xml:lang="en">Transgender is the state of one's gender identity, expression or role not matching one's assigned sex.</skos:definition>
+   <ifi:CN_pl>Transgenders</ifi:CN_pl>
+   <ifi:CN_sg>Transgender</ifi:CN_sg>
+   <owl:sameAs rdf:resource="http://dbpedia.org/resource/Transgender"/>
+   <owl:comment xml:lang="en">No longer a subclass of Sex.</owl:comment>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <skos:inScheme rdf:resource="#Gender"/> 
+  </cwrc:Gender>
+
+ <owl:deprecatedClass rdf:about="#Transgendered">
+  <rdf:comment xml:lang="en">Deprecated in favour of #Transgender.</rdf:comment>
+  <owl:equivalentClass rdf:resource="#Transgender"/>
+ </owl:deprecatedClass>
+
+  <owl:Class rdf:about="#Organization">
+    <ifi:CN_pl>Organizations</ifi:CN_pl>
+    <ifi:CN_sg>Organization</ifi:CN_sg>
+   <owl:sameAs rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
+   <owl:sameAs rdf:resource="http://schema.org/Organization"/>
+  </owl:Class>
+
+
   <owl:Class rdf:about="#Date">
     <ifi:CN_pl>Dates</ifi:CN_pl>
     <ifi:CN_sg>Date</ifi:CN_sg>
   </owl:Class>
-  <owl:Class rdf:about="#Female">
-    <ifi:CN_pl>Females</ifi:CN_pl>
-    <ifi:CN_sg>Female</ifi:CN_sg>
-    <rdfs:subClassOf rdf:resource="#Sex"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Geog">
-    <ifi:CN_pl>Geogs</ifi:CN_pl>
-    <ifi:CN_sg>Geog</ifi:CN_sg>
-    <rdfs:subClassOf rdf:resource="#Place"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Male">
-    <ifi:CN_pl>Males</ifi:CN_pl>
-    <ifi:CN_sg>Male</ifi:CN_sg>
-    <rdfs:subClassOf rdf:resource="#Sex"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Organization">
-    <ifi:CN_pl>Organizations</ifi:CN_pl>
-    <ifi:CN_sg>Organization</ifi:CN_sg>
-  </owl:Class>
-  <owl:Class rdf:about="#Person">
-    <ifi:CN_pl>Authors</ifi:CN_pl>
-    <ifi:CN_sg>Author</ifi:CN_sg>
-  </owl:Class>
-  <owl:Class rdf:about="#Place">
-    <ifi:CN_pl>Places</ifi:CN_pl>
-    <ifi:CN_sg>Place</ifi:CN_sg>
-  </owl:Class>
+
+
   <owl:Class rdf:about="#RaceColour">
     <ifi:CN_pl>RaceColours</ifi:CN_pl>
     <ifi:CN_sg>RaceColour</ifi:CN_sg>
     <rdfs:subClassOf rdf:resource="#Person"/>
   </owl:Class>
-  <owl:Class rdf:about="#Region">
-    <ifi:CN_pl>Regions</ifi:CN_pl>
-    <ifi:CN_sg>Region</ifi:CN_sg>
-    <rdfs:subClassOf rdf:resource="#Geog"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Settlement">
-    <ifi:CN_pl>Settlements</ifi:CN_pl>
-    <ifi:CN_sg>Settlement</ifi:CN_sg>
-    <rdfs:subClassOf rdf:resource="#Region"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Sex">
-    <ifi:CN_pl>Sexes</ifi:CN_pl>
-    <ifi:CN_sg>Sex</ifi:CN_sg>
-    <rdfs:subClassOf rdf:resource="#Person"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Transgendered">
-    <ifi:CN_pl>Transgenereds</ifi:CN_pl>
-    <ifi:CN_sg>Transgenered</ifi:CN_sg>
-    <rdfs:subClassOf rdf:resource="#Sex"/>
-  </owl:Class>
-  <owl:Class rdf:about="#UnknownSex">
-    <ifi:CN_pl>UnknownSexes</ifi:CN_pl>
-    <ifi:CN_sg>UnknownSex</ifi:CN_sg>
-    <rdfs:subClassOf rdf:resource="#Sex"/>
-  </owl:Class>
+
   <owl:Class rdf:about="#Work">
     <ifi:CN_pl>Works</ifi:CN_pl>
     <ifi:CN_sg>Work</ifi:CN_sg>
+<owl:sameAs rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
   </owl:Class>
+
   <owl:AsymmetricProperty rdf:about="#bestKnownWork">
     <ifi:TV_pl>bestKnownWork</ifi:TV_pl>
     <ifi:TV_sg>bestKnownWorks</ifi:TV_sg>
