@@ -90,6 +90,7 @@
     <loc:pdr rdf:resource="#SusanBrown"/> 
     <loc:fnd rdf:resource="#sshrc"/>
     <rdfs:isDefinedBy rdf:resource=""/>
+    <foaf:logo rdf:resource="http://www.cwrc.ca/wp-content/uploads/2010/11/CWRC_logo_v074.gif"/>
    </void:Dataset>
 
 
