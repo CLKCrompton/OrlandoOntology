@@ -15,6 +15,7 @@
    xmlns:cc = "http://creativecommons.org/ns#"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
    xmlns:void="http://rdfs.org/ns/void#"
+   xmlns:skosxl="http://www.w3.org/2008/05/skos-xl#" 
    xmlns="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology.owl#" 
    xml:base="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology.owl#"
    xmlns:cwrc="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology.owl#">
@@ -100,6 +101,49 @@
   <owl:AnnotationProperty rdf:about="http://attempto.ifi.uzh.ch/ace_lexicon#TV_sg"/>
   <owl:AnnotationProperty rdf:about="http://attempto.ifi.uzh.ch/ace_lexicon#TV_vbg"/>
 
+<!-- Event -->
+
+  <owl:Class rdf:ID="Event">
+   <foaf:name>Event</foaf:name>
+   <rdfs:label xml:lang="en">Event (Historical)</rdfs:label>
+   <rdfs:label xml:lang="fr">Évenement (Historique)</rdfs:label>
+   <rdfs:label xml:lang="de">Event</rdfs:label>
+   <skos:definition xml:lang="en">An event that occurs in space and time.</skos:definition>
+   <rdf:type rdf:resource="http://www.w3.org/2006/time/TemporalEntity"/>
+   <owl:sameAs rdf:resource="http://erlangen-crm.org/current/E5.Event"/>
+   <owl:sameAs rdf:resource="http://linkedevents.org/ontology/Event"/> 
+   <owl:sameAs rdf:resource="http://en.wikipedia.org/wiki/Event"/>
+  </owl:Class>
+
+   <owl:ObjectProperty rdf:ID="hasActor">
+   <rdfs:label xml:lang="en">hasActor</rdfs:label>
+   <rdfs:comment xml:lang="en">An Actor in this event.</rdfs:comment>
+   <rdfs:domain rdf:resource="#Event"/>
+   <rdfs:range rdf:resource="#Actor"/>
+  <!--  <owl:sameAs rdf:resource="cidoc:P11B.participated_in"/>
+   Not ="P12F.occurred_in_the_presence_of --> 
+  </owl:ObjectProperty>
+
+  <owl:Class rdf:ID="Actor">
+   <rdfs:label xml:lang="en">Actor</rdfs:label>
+   <rdfs:comment xml:lang="en">A person performing a certain role within an event.</rdfs:comment>
+   <owl:sameAs rdf:resource="http://erlangen-crm.org/current/E39.Actor"/>
+  </owl:Class>
+
+  <owl:ObjectProperty rdf:ID="identity">
+   <rdfs:label xml:lang="en">Identity</rdfs:label>
+   <rdfs:comment xml:lang="en">The identity of the person who committed the act.</rdfs:comment>
+   <rdfs:domain rdf:resource="#Actor"/>
+   <rdfs:range rdf:resource="#Person"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:ID="inRole">
+   <rdfs:label xml:lang="en">In Role</rdfs:label>
+   <rdfs:comment xml:lang="en">The role taken on by this actor.</rdfs:comment>
+   <rdfs:domain rdf:resource="#Actor"/>
+   <rdfs:range rdf:resource="#Role"/>
+  </owl:ObjectProperty>
+
 
 <!-- Geo things -->
 
@@ -148,12 +192,11 @@
     <rdf:comment xml:lang="en">It may be a good idea to deprecate this property in favour of Place like schema.org has. The only justification / use case in other vocabulary for this class is an administrative area, which is not the current definition of this class.</rdf:comment> 
     <ifi:CN_pl>Regions</ifi:CN_pl>
     <ifi:CN_sg>Region</ifi:CN_sg>
-    <rdfs:subClassOf rdf:resource="#Geog"/>
     <owl:differentFrom rdf:resource="http://dbpedia.org/ontology/Region"/>
     <owl:equivalentClass rdf:resource="http://www.geonames.org/ontology#L"/>
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
-    <owl:sameAs rdf:resource="http://geovocab.org/spatial#Feature"/>
-    <owl:sameAs rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+    <rdf:type rdf:resource="http://geovocab.org/spatial#Feature"/>
+    <rdf:type rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
   </owl:Class>
 
   <owl:Class rdf:about="#Settlement">
@@ -167,6 +210,8 @@
     <rdfs:subClassOf rdf:resource="#Place"/>
     <owl:equivalentClass rdf:resource="http://dbpedia.org/ontology/PopulatedPlace"/> 
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Human_settlement"/>
+    <rdf:type rdf:resource="http://geovocab.org/spatial#Feature"/>  
+    <rdf:type rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/> 
   </owl:Class>
 
   <!-- People -->
@@ -179,6 +224,66 @@
    <owl:sameAs rdf:resource="http://erlangen-crm.org/current/E21_Person"/>
    <owl:sameAs rdf:resource="http://dbpedia.org/ontology/Person"/>
   </owl:Class>
+
+  <!-- Names can be linked through skos:label property or built-in orlando properties -->
+
+  <owl:AsymmetricProperty rdf:about="#hasName">
+    <ifi:TV_pl>hasName</ifi:TV_pl>
+    <ifi:TV_sg>hasNames</ifi:TV_sg>
+    <ifi:TV_vbg>hasNamed</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2008/05/skos#label"/>
+  </owl:AsymmetricProperty>
+
+ 
+  <owl:Class rdf:about="#NameAtBirth">
+    <rdfs:label xml:lang="en">Name at Birth</rdfs:label>
+    <rdfs:label xml:lang="fr">Nom à la Naissance</rdfs:label>
+    <foaf:name xml:lang="en">Name</foaf:name>
+    <foaf:name xml:lang="fr">Nom</foaf:name>
+    <skosxl:literalForm xml:lang="en">Name</skosxl:literalForm> 
+    <rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
+  </owl:Class>
+
+  <owl:AsymmetricProperty rdf:about="#hasBirthName">
+    <ifi:TV_pl>hasBirthName</ifi:TV_pl>
+    <ifi:TV_sg>hasBirthNames</ifi:TV_sg>
+    <ifi:TV_vbg>hasBirthNamed</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <skos:definition>all names borne at birth</skos:definition>
+    <skos:definition>names given (not automatically inherited) at birth</skos:definition>
+    <rdfs:subPropertyOf rdf:resource="#hasName"/>
+  </owl:AsymmetricProperty>
+
+  <owl:Class rdf:about="#MaidenName">
+    <rdfs:label xml:lang="en">Maide Name</rdfs:label>
+    <rdfs:label xml:lang="fr">Nom de fille</rdfs:label>
+    <foaf:name xml:lang="en">Name</foaf:name>
+    <foaf:name xml:lang="fr">Nom</foaf:name>
+   <rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#LegalName">
+    <rdfs:label xml:lang="en">Legal Name</rdfs:label>
+    <rdfs:label xml:lang="fr">Nom Légal</rdfs:label>
+    <foaf:name xml:lang="en">Name</foaf:name>
+    <foaf:name xml:lang="fr">Nom</foaf:name>
+   <rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
+  </owl:Class>
+
+  <owl:Class rdf:about="#PenName">
+    <rdfs:label xml:lang="en">Pen Name</rdfs:label>
+    <rdfs:label xml:lang="fr">Nom de PLume</rdfs:label>
+    <foaf:name xml:lang="en">Name</foaf:name>
+    <foaf:name xml:lang="fr">Nom</foaf:name>
+   <rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
+  </owl:Class>
+  <!-- Relationships between people -->
+
+
 
   <!-- Sex -->
 
@@ -234,7 +339,8 @@
    <rdfs:label xml:lang="en">Unknown Sex</rdfs:label>
    <rdfs:label xml:lang="fr">Sexe Inconnue</rdfs:label>
    <foaf:name xml:lang="en">Unknown</foaf:name>
-   <foaf:name xml:lang="fr">Inconnu</foaf:name>        
+   <foaf:name xml:lang="fr">Inconnu</foaf:name>      
+   <owl:comment xml:lang="en">This instance is used to report the absence of information instead of not reporting a triple.</owl:comment>  
    <ifi:CN_pl>UnknownSexes</ifi:CN_pl>
    <ifi:CN_sg>UnknownSex</ifi:CN_sg>
    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
@@ -276,6 +382,565 @@
   <owl:equivalentClass rdf:resource="#Transgender"/>
  </owl:deprecatedClass>
 
+
+  <!-- Basic relationships -->
+  <owl:ObjectProperty rdf:about="#hasFamily">
+    <ifi:TV_pl>hasFamily</ifi:TV_pl>
+    <ifi:TV_sg>hasFamilies</ifi:TV_sg>
+    <ifi:TV_vbg>hasFamilied</ifi:TV_vbg>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  </owl:ObjectProperty>
+
+  <owl:IrreflexiveProperty rdf:about="#hasFriendOrAssociate">
+    <ifi:TV_pl>hasFriendOrAssociate</ifi:TV_pl>
+    <ifi:TV_sg>hasFriendOrAssociates</ifi:TV_sg>
+    <ifi:TV_vbg>hasFriendOrAssociated</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasRelationship"/>
+  </owl:IrreflexiveProperty>
+
+
+  <!-- Is this correct? -->
+
+  <owl:ObjectProperty rdf:about="#hasSeniorCollateralRelation">
+    <ifi:TV_pl>hasSeniorCollateralRelation</ifi:TV_pl>
+    <ifi:TV_sg>hasSeniorCollateralRelations</ifi:TV_sg>   
+    <ifi:TV_vbg>hasSeniorCollateralRelationed</ifi:TV_vbg>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasCollateralRelation"/>
+  </owl:ObjectProperty>
+
+
+  <owl:IrreflexiveProperty rdf:about="#hasCollateralRelation"> 
+    <ifi:TV_pl>hasCollateralRelation</ifi:TV_pl>
+    <ifi:TV_sg>hasCollateralRelations</ifi:TV_sg>
+    <ifi:TV_vbg>hasCollateralRelationed</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
+  </owl:IrreflexiveProperty>
+
+  <!-- 
+    a) Are relationships those that occur naturally or are we documenting the relationships as known by the person? 
+    b) How are we going to assign provenance?
+    c) Link to relationships vocabulary.
+    -->
+  <owl:AsymmetricProperty rdf:about="#hasAncestor">
+    <ifi:TV_pl>hasForebear</ifi:TV_pl>
+    <ifi:TV_sg>hasForebears</ifi:TV_sg>
+    <ifi:TV_vbg>hasForebeared</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
+  </owl:AsymmetricProperty>
+
+  <owl:AsymmetricProperty rdf:about="#hasAunt">
+    <ifi:TV_pl>hasAunt</ifi:TV_pl>
+    <ifi:TV_sg>hasAunts</ifi:TV_sg>
+    <ifi:TV_vbg>hasAunted</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>     
+    <rdfs:subPropertyOf rdf:resource="#hasSeniorCollateralRelation"/>
+  </owl:AsymmetricProperty>
+
+  <owl:AsymmetricProperty rdf:about="#hasBrother">
+    <ifi:TV_pl>hasBrother</ifi:TV_pl>
+    <ifi:TV_sg>hasBrothers</ifi:TV_sg>
+    <ifi:TV_vbg>hasBrothered</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasSibling"/>
+  </owl:AsymmetricProperty>
+  <owl:AsymmetricProperty rdf:about="#hasChild">
+    <ifi:TV_pl>hasChild</ifi:TV_pl>
+    <ifi:TV_sg>hasChilds</ifi:TV_sg>
+    <ifi:TV_vbg>hasChilded</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
+    <owl:inverseOf rdf:resource="#hasParent"/>
+  </owl:AsymmetricProperty>
+
+  <owl:AsymmetricProperty rdf:about="#hasChildlessness">
+    <ifi:TV_pl>hasChildlessness</ifi:TV_pl>
+    <ifi:TV_sg>hasChildlessnesses</ifi:TV_sg>
+    <ifi:TV_vbg>hasChildlessnessed</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
+    <owl:inverseOf rdf:resource="#hasChild"/>
+  </owl:AsymmetricProperty>
+
+  <owl:IrreflexiveProperty rdf:about="#hasCousin">
+    <ifi:TV_pl>hasCousin</ifi:TV_pl>
+    <ifi:TV_sg>hasCousins</ifi:TV_sg>
+    <ifi:TV_vbg>hasCousined</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
+  </owl:IrreflexiveProperty>
+
+  <owl:AsymmetricProperty rdf:about="#hasDaughter">
+    <ifi:TV_pl>hasDaughter</ifi:TV_pl>
+    <ifi:TV_sg>hasDaughters</ifi:TV_sg>
+    <ifi:TV_vbg>hasDaughtered</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>     
+    <rdfs:subPropertyOf rdf:resource="#hasChild"/>
+  </owl:AsymmetricProperty>
+
+  <owl:AsymmetricProperty rdf:about="#hasDescendant">
+    <ifi:TV_pl>hasDescendant</ifi:TV_pl>
+    <ifi:TV_sg>hasDescendants</ifi:TV_sg>
+    <ifi:TV_vbg>hasDescendanted</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
+    <owl:inverseOf rdf:resource="#hasAncestor"/>
+  </owl:AsymmetricProperty>
+
+  <owl:AsymmetricProperty rdf:about="#hasFather">
+    <ifi:TV_pl>hasFather</ifi:TV_pl>
+    <ifi:TV_sg>hasFathers</ifi:TV_sg>
+    <ifi:TV_vbg>hasFathered</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>     
+    <rdfs:subPropertyOf rdf:resource="#hasParent"/>
+  </owl:AsymmetricProperty>
+
+
+  <owl:AsymmetricProperty rdf:about="#hasGrandchild">
+    <ifi:TV_pl>hasGrandchild</ifi:TV_pl>
+    <ifi:TV_sg>hasGrandchilds</ifi:TV_sg>
+    <ifi:TV_vbg>hasGrandchilded</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
+    <owl:inverseOf rdf:resource="#hasGrandparent"/>
+  </owl:AsymmetricProperty>
+  <owl:AsymmetricProperty rdf:about="#hasGranddaughter">
+    <ifi:TV_pl>hasGranddaughter</ifi:TV_pl>
+    <ifi:TV_sg>hasGranddaughters</ifi:TV_sg>
+    <ifi:TV_vbg>hasGranddaughtered</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasGrandchild"/>
+  </owl:AsymmetricProperty>
+  <owl:AsymmetricProperty rdf:about="#hasGrandfather">
+    <ifi:TV_pl>hasGrandfather</ifi:TV_pl>
+    <ifi:TV_sg>hasGrandfathers</ifi:TV_sg>
+    <ifi:TV_vbg>hasGrandfathered</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasGrandparent"/>
+  </owl:AsymmetricProperty>
+ 
+  <owl:AsymmetricProperty rdf:about="#hasGrandfather">
+    <ifi:TV_pl>hasGrandfather</ifi:TV_pl>
+    <ifi:TV_sg>hasGrandfathers</ifi:TV_sg>
+    <ifi:TV_vbg>hasGrandfathered</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasGrandparent"/>
+  </owl:AsymmetricProperty>
+  <owl:AsymmetricProperty rdf:about="#hasGrandmother">
+    <ifi:TV_pl>hasGrandmother</ifi:TV_pl>
+    <ifi:TV_sg>hasGrandmothers</ifi:TV_sg>
+    <ifi:TV_vbg>hasGrandmothered</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasGrandparent"/>
+  </owl:AsymmetricProperty>
+  <owl:AsymmetricProperty rdf:about="#hasGrandparent">
+    <ifi:TV_pl>hasGrandparent</ifi:TV_pl>
+    <ifi:TV_sg>hasGrandparents</ifi:TV_sg>
+    <ifi:TV_vbg>hasGrandparented</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
+  </owl:AsymmetricProperty>
+  <owl:AsymmetricProperty rdf:about="#hasGrandson">   
+    <ifi:TV_pl>hasGrandson</ifi:TV_pl>   
+    <ifi:TV_sg>hasGrandsons</ifi:TV_sg>   
+    <ifi:TV_vbg>hasGrandsoned</ifi:TV_vbg>   
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasGrandchild"/> 
+  </owl:AsymmetricProperty>
+  <owl:IrreflexiveProperty rdf:about="#hasGuardian">  
+    <ifi:TV_pl>hasGuardian</ifi:TV_pl>   
+    <ifi:TV_sg>hasGuardians</ifi:TV_sg>   
+    <ifi:TV_vbg>hasGuardianed</ifi:TV_vbg>   
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/> 
+    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
+  </owl:IrreflexiveProperty>
+  <owl:IrreflexiveProperty rdf:about="#hasHusband">
+    <ifi:TV_pl>hasHusband</ifi:TV_pl>
+    <ifi:TV_sg>hasHusbands</ifi:TV_sg>
+    <ifi:TV_vbg>hasHusbanded</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasSpouse"/>
+  </owl:IrreflexiveProperty>
+
+  <owl:IrreflexiveProperty rdf:about="#hasInstructor">
+    <ifi:TV_pl>hasInstructor</ifi:TV_pl>
+    <ifi:TV_sg>hasInstructors</ifi:TV_sg>
+    <ifi:TV_vbg>hasInstructored</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:comment>identifies teachers important in a writer's development</rdfs:comment>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasEducation"/>
+  </owl:IrreflexiveProperty>
+
+  <owl:ObjectProperty rdf:about="#hasIntellectualInfluence">
+    <ifi:TV_pl>hasIntellectualInfluence</ifi:TV_pl>
+    <ifi:TV_sg>hasIntellectualInfluences</ifi:TV_sg>
+    <ifi:TV_vbg>hasIntellectualInfluenced</ifi:TV_vbg>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasInfluence"/>
+  </owl:ObjectProperty>
+  <owl:IrreflexiveProperty rdf:about="#hasIntimateRelationship">
+    <ifi:TV_pl>hasIntimateRelation</ifi:TV_pl>
+    <ifi:TV_sg>hasIntimateRelations</ifi:TV_sg>
+    <ifi:TV_vbg>hasIntimateRelationed</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasRelationship"/>
+  </owl:IrreflexiveProperty>
+  <owl:AsymmetricProperty rdf:about="#hasMother">
+    <ifi:TV_pl>hasMother</ifi:TV_pl>
+    <ifi:TV_sg>hasMothers</ifi:TV_sg>
+    <ifi:TV_vbg>hasMothered</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasParent"/>
+  </owl:AsymmetricProperty>
+  <owl:ObjectProperty rdf:about="#hasNephew">
+    <ifi:TV_pl>hasNephew</ifi:TV_pl>
+    <ifi:TV_sg>hasNephews</ifi:TV_sg>
+    <ifi:TV_vbg>hasNephewed</ifi:TV_vbg>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasJuniorCollateralRelation"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasNiece">
+    <ifi:TV_pl>hasNiece</ifi:TV_pl>
+    <ifi:TV_sg>hasNieces</ifi:TV_sg>
+    <ifi:TV_vbg>hasNieced</ifi:TV_vbg>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasJuniorCollateralRelation"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="#hasNumberOfChildren">
+    <ifi:TV_pl>hasNumberOfChildren</ifi:TV_pl>
+    <ifi:TV_sg>hasNumberOfChildrens</ifi:TV_sg>
+    <ifi:TV_vbg>hasNumberOfChildrened</ifi:TV_vbg>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasChild"/>
+  </owl:ObjectProperty>
+
+ <owl:IrreflexiveProperty rdf:about="#hasOtherFamilyRelation">
+    <ifi:TV_pl>hasOtherFamilyRelation</ifi:TV_pl>
+    <ifi:TV_sg>hasOtherFamilyRelations</ifi:TV_sg>
+    <ifi:TV_vbg>hasOtherFamilyRelationed</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
+  </owl:IrreflexiveProperty>
+  <owl:AsymmetricProperty rdf:about="#hasParent">
+    <ifi:TV_pl>hasParent</ifi:TV_pl>
+    <ifi:TV_sg>hasParents</ifi:TV_sg>
+    <ifi:TV_vbg>hasParented</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
+  </owl:AsymmetricProperty>
+  <owl:IrreflexiveProperty rdf:about="#hasPartner">
+    <ifi:TV_pl>hasPartner</ifi:TV_pl>
+    <ifi:TV_sg>hasPartners</ifi:TV_sg>
+    <ifi:TV_vbg>hasPartnered</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
+  </owl:IrreflexiveProperty>
+
+  <owl:AsymmetricProperty rdf:about="#hasRelationsWithPublisher">
+    <ifi:TV_pl>hasRelationsWithPublisher</ifi:TV_pl>
+    <ifi:TV_sg>hasRelationsWithPublishers</ifi:TV_sg>
+    <ifi:TV_vbg>hasRelationsWithPublishered</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Place"/>
+    <rdfs:subPropertyOf rdf:resource="#toBeSorted"/>
+  </owl:AsymmetricProperty>
+
+
+  <owl:IrreflexiveProperty rdf:about="#hasRelationship">
+    <ifi:TV_pl>hasRelationship</ifi:TV_pl>
+    <ifi:TV_sg>hasRelationships</ifi:TV_sg>
+    <ifi:TV_vbg>hasRelationshiped</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+  </owl:IrreflexiveProperty>
+
+  <owl:AsymmetricProperty rdf:about="#hasSibling">
+    <ifi:TV_pl>hasSibling</ifi:TV_pl>
+    <ifi:TV_sg>hasSiblings</ifi:TV_sg>
+    <ifi:TV_vbg>hasSiblinged</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
+  </owl:AsymmetricProperty>
+
+  <owl:AsymmetricProperty rdf:about="#hasSister">
+    <ifi:TV_pl>hasSister</ifi:TV_pl>
+    <ifi:TV_sg>hasSisters</ifi:TV_sg>
+    <ifi:TV_vbg>hasSistered</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasSibling"/>
+  </owl:AsymmetricProperty>
+
+  <owl:AsymmetricProperty rdf:about="#hasSon">
+    <ifi:TV_pl>hasSon</ifi:TV_pl>
+    <ifi:TV_sg>hasSons</ifi:TV_sg>
+    <ifi:TV_vbg>hasSoned</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasChild"/>
+  </owl:AsymmetricProperty>
+  <owl:IrreflexiveProperty rdf:about="#hasSpouse">
+    <ifi:TV_pl>hasSpouse</ifi:TV_pl>
+    <ifi:TV_sg>hasSpouses</ifi:TV_sg>
+    <ifi:TV_vbg>hasSpoused</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
+  </owl:IrreflexiveProperty>
+  <owl:AsymmetricProperty rdf:about="#hasStandardName">
+    <ifi:TV_pl>hasStandardName</ifi:TV_pl>
+    <ifi:TV_sg>hasStandardNames</ifi:TV_sg>
+    <ifi:TV_vbg>hasStandardNamed</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#hasName"/>
+  </owl:AsymmetricProperty>
+ <owl:AsymmetricProperty rdf:about="#hasStepChild">
+    <ifi:TV_pl>hasStepChild</ifi:TV_pl>
+    <ifi:TV_sg>hasStepChilds</ifi:TV_sg>
+    <ifi:TV_vbg>hasStepChilded</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasStepFamily"/>
+  </owl:AsymmetricProperty>
+  <owl:IrreflexiveProperty rdf:about="#hasStepFamily">
+    <ifi:TV_pl>hasStepFamily</ifi:TV_pl>
+    <ifi:TV_sg>hasStepFamilies</ifi:TV_sg>
+    <ifi:TV_vbg>hasStepFamilied</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
+  </owl:IrreflexiveProperty>
+  <owl:AsymmetricProperty rdf:about="#hasStepParent">
+    <ifi:TV_pl>hasStepParent</ifi:TV_pl>
+    <ifi:TV_sg>hasStepParents</ifi:TV_sg>
+    <ifi:TV_vbg>hasStepParented</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasStepFamily"/>
+    <owl:inverseOf rdf:resource="#hasStepChild"/>
+  </owl:AsymmetricProperty>
+  <owl:IrreflexiveProperty rdf:about="#hasStepSibling">
+    <ifi:TV_pl>hasStepSibling</ifi:TV_pl>
+    <ifi:TV_sg>hasStepSiblings</ifi:TV_sg>
+    <ifi:TV_vbg>hasStepSiblinged</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasStepFamily"/>
+  </owl:IrreflexiveProperty>
+  <owl:AsymmetricProperty rdf:about="#hasStepbrother">
+    <ifi:TV_pl>hasStepbrother</ifi:TV_pl>
+    <ifi:TV_sg>hasStepbrothers</ifi:TV_sg>
+    <ifi:TV_vbg>hasStepbrothered</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasStepSibling"/>
+  </owl:AsymmetricProperty>
+  <owl:AsymmetricProperty rdf:about="#hasStepdaughter">
+    <ifi:TV_pl>hasStepdaughter</ifi:TV_pl>
+    <ifi:TV_sg>hasStepdaughters</ifi:TV_sg>
+    <ifi:TV_vbg>hasStepdaughtered</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasStepChild"/>
+  </owl:AsymmetricProperty>
+
+ <owl:AsymmetricProperty rdf:about="#hasStepfather">
+    <ifi:TV_pl>hasStepfather</ifi:TV_pl>
+    <ifi:TV_sg>hasStepfathers</ifi:TV_sg>
+    <ifi:TV_vbg>hasStepfathered</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasStepParent"/>
+  </owl:AsymmetricProperty>
+  <owl:AsymmetricProperty rdf:about="#hasStepmother">
+    <ifi:TV_pl>hasStepmother</ifi:TV_pl>
+    <ifi:TV_sg>hasStepmothers</ifi:TV_sg>
+    <ifi:TV_vbg>hasStepmothered</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasStepParent"/>
+  </owl:AsymmetricProperty>
+  <owl:AsymmetricProperty rdf:about="#hasStepsister">
+    <ifi:TV_pl>hasStepsister</ifi:TV_pl>
+    <ifi:TV_sg>hasStepsisters</ifi:TV_sg>
+    <ifi:TV_vbg>hasStepsistered</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasStepSibling"/>
+  </owl:AsymmetricProperty>
+
+  <owl:AsymmetricProperty rdf:about="#hasStepson">
+    <ifi:TV_pl>hasStepson</ifi:TV_pl>
+    <ifi:TV_sg>hasStepsons</ifi:TV_sg>
+    <ifi:TV_vbg>hasStepsoned</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+     
+    <rdfs:subPropertyOf rdf:resource="#hasStepChild"/>
+  </owl:AsymmetricProperty>
+
+  <owl:AsymmetricProperty rdf:about="#hasUncle">
+    <ifi:TV_pl>hasUncle</ifi:TV_pl>
+    <ifi:TV_sg>hasUncles</ifi:TV_sg>
+    <ifi:TV_vbg>hasUncled</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasSeniorCollateralRelation"/>
+  </owl:AsymmetricProperty>
+
+  <owl:IrreflexiveProperty rdf:about="#hasWife">
+    <ifi:TV_pl>hasWife</ifi:TV_pl>
+    <ifi:TV_sg>hasWifes</ifi:TV_sg>
+    <ifi:TV_vbg>hasWifed</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasSpouse"/>
+  </owl:IrreflexiveProperty>
+
+  <owl:IrreflexiveProperty rdf:about="#livesWith">
+    <ifi:TV_pl>livesWith</ifi:TV_pl>
+    <ifi:TV_sg>livesWiths</ifi:TV_sg>
+    <ifi:TV_vbg>livesWithed</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Person"/>
+    <rdfs:subPropertyOf rdf:resource="#hasFriendOrAssociate"/>
+  </owl:IrreflexiveProperty>
+
+
+
   <owl:Class rdf:about="#Organization">
     <ifi:CN_pl>Organizations</ifi:CN_pl>
     <ifi:CN_sg>Organization</ifi:CN_sg>
@@ -299,7 +964,7 @@
   <owl:Class rdf:about="#Work">
     <ifi:CN_pl>Works</ifi:CN_pl>
     <ifi:CN_sg>Work</ifi:CN_sg>
-<owl:sameAs rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+<owl:sameAs rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
   </owl:Class>
 
   <owl:AsymmetricProperty rdf:about="#bestKnownWork">
@@ -706,17 +1371,7 @@
     <rdfs:range rdf:resource="#Settlement"/>
     <rdfs:subPropertyOf rdf:resource="#hasAdvertisingConnectionToRegion"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasAncestor">
-    <ifi:TV_pl>hasForebear</ifi:TV_pl>
-    <ifi:TV_sg>hasForebears</ifi:TV_sg>
-    <ifi:TV_vbg>hasForebeared</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
-  </owl:AsymmetricProperty>
+
   <owl:AsymmetricProperty rdf:about="#hasAnthologization">
     <ifi:TV_pl>hasAnthologization</ifi:TV_pl>
     <ifi:TV_sg>hasAnthologizations</ifi:TV_sg>
@@ -873,7 +1528,7 @@
     <ifi:TV_vbg>hasAreaOfStudied</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>records stubjects studied</rdfs:comment>
+    <skos:definition>records stubjects studied</skos:definition>
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasEducation"/>
   </owl:AsymmetricProperty>
@@ -951,17 +1606,6 @@
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:range rdf:resource="#Settlement"/>
     <rdfs:subPropertyOf rdf:resource="#hasAttitudeConnectionToRegion"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasAunt">
-    <ifi:TV_pl>hasAunt</ifi:TV_pl>
-    <ifi:TV_sg>hasAunts</ifi:TV_sg>
-    <ifi:TV_vbg>hasAunted</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Female"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasSeniorCollateralRelation"/>
   </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasAuthorNameTypeAllusive">
     <ifi:TV_pl>hasAuthorNameTypeAllusive</ifi:TV_pl>
@@ -1638,16 +2282,8 @@
     <rdfs:range rdf:resource="#Settlement"/>
     <rdfs:subPropertyOf rdf:resource="#hasAuthorshipDiscussionSpuriousConnectionToRegion"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasBirthName">
-    <ifi:TV_pl>hasBirthName</ifi:TV_pl>
-    <ifi:TV_sg>hasBirthNames</ifi:TV_sg>
-    <ifi:TV_vbg>hasBirthNamed</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>all names borne at birth</rdfs:comment>
-    <rdfs:comment>names given (not automatically inherited) at birth</rdfs:comment>
-    <rdfs:subPropertyOf rdf:resource="#hasName"/>
-  </owl:AsymmetricProperty>
+
+
   <owl:AsymmetricProperty rdf:about="#hasBirthPosition">
     <ifi:TV_pl>hasBirthPosition</ifi:TV_pl>
     <ifi:TV_sg>hasBirthPositions</ifi:TV_sg>
@@ -1656,17 +2292,6 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#birth"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasBrother">
-    <ifi:TV_pl>hasBrother</ifi:TV_pl>
-    <ifi:TV_sg>hasBrothers</ifi:TV_sg>
-    <ifi:TV_vbg>hasBrothered</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Male"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasSibling"/>
   </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasCauseOfDeath">
     <ifi:TV_pl>hasCauseOfDeath</ifi:TV_pl>
@@ -1751,27 +2376,6 @@
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:range rdf:resource="#Settlement"/>
     <rdfs:subPropertyOf rdf:resource="#hasCensorshipConnectionToRegion"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasChild">
-    <ifi:TV_pl>hasChild</ifi:TV_pl>
-    <ifi:TV_sg>hasChilds</ifi:TV_sg>
-    <ifi:TV_vbg>hasChilded</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
-    <owl:inverseOf rdf:resource="#hasParent"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasChildlessness">
-    <ifi:TV_pl>hasChildlessness</ifi:TV_pl>
-    <ifi:TV_sg>hasChildlessnesses</ifi:TV_sg>
-    <ifi:TV_vbg>hasChildlessnessed</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
-    <owl:inverseOf rdf:resource="#hasChild"/>
   </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasCirculation">
     <ifi:TV_pl>hasCirculation</ifi:TV_pl>
@@ -1863,20 +2467,11 @@
     <ifi:TV_vbg>hasClassIssued</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>discussion around an individual's class position, especially where this was shifting, contested, or problematic</rdfs:comment>
+    <skos:definition>discussion around an individual's class position, especially where this was shifting, contested, or problematic</skos:definition>
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasClass"/>
   </owl:AsymmetricProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasCollateralRelation">
-    <ifi:TV_pl>hasCollateralRelation</ifi:TV_pl>
-    <ifi:TV_sg>hasCollateralRelations</ifi:TV_sg>
-    <ifi:TV_vbg>hasCollateralRelationed</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
-  </owl:IrreflexiveProperty>
+
   <owl:AsymmetricProperty rdf:about="#hasContract">
     <ifi:TV_pl>hasContract</ifi:TV_pl>
     <ifi:TV_sg>hasContracts</ifi:TV_sg>
@@ -2033,43 +2628,22 @@
     <ifi:TV_vbg>hasStyledNamed</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>records those titles which are called courtesy titles</rdfs:comment>
+    <skos:definition>records those titles which are called courtesy titles</skos:definition>
     <rdfs:subPropertyOf rdf:resource="#hasName"/>
   </owl:AsymmetricProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasCousin">
-    <ifi:TV_pl>hasCousin</ifi:TV_pl>
-    <ifi:TV_sg>hasCousins</ifi:TV_sg>
-    <ifi:TV_vbg>hasCousined</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
-  </owl:IrreflexiveProperty>
   <owl:IrreflexiveProperty rdf:about="#hasCulturalFormation">
     <ifi:TV_pl>hasCulturalFormation</ifi:TV_pl>
     <ifi:TV_sg>hasCulturalFormations</ifi:TV_sg>
     <ifi:TV_vbg>hasCulturalFormationed</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </owl:IrreflexiveProperty>
-  <owl:AsymmetricProperty rdf:about="#hasDaughter">
-    <ifi:TV_pl>hasDaughter</ifi:TV_pl>
-    <ifi:TV_sg>hasDaughters</ifi:TV_sg>
-    <ifi:TV_vbg>hasDaughtered</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Female"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasChild"/>
-  </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasDegree">
     <ifi:TV_pl>hasDegree</ifi:TV_pl>
     <ifi:TV_sg>hasDegrees</ifi:TV_sg>
     <ifi:TV_vbg>hasDegreed</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>captures any qualifications earned (BA, MA, PhD, diplomas, certificates, etc.)</rdfs:comment>
+    <skos:definition>captures any qualifications earned (BA, MA, PhD, diplomas, certificates, etc.)</skos:definition>
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasEducation"/>
   </owl:AsymmetricProperty>
@@ -2081,18 +2655,6 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasCulturalFormation"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasDescendant">
-    <ifi:TV_pl>hasDescendant</ifi:TV_pl>
-    <ifi:TV_sg>hasDescendants</ifi:TV_sg>
-    <ifi:TV_vbg>hasDescendanted</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
-    <owl:inverseOf rdf:resource="#hasAncestor"/>
   </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasDestructionOfWork">
     <ifi:TV_pl>hasDestructionOfWork</ifi:TV_pl>
@@ -2479,7 +3041,7 @@
     <ifi:TV_pl>hasEducation</ifi:TV_pl>
     <ifi:TV_sg>hasEducations</ifi:TV_sg>
     <ifi:TV_vbg>hasEducationed</ifi:TV_vbg>
-    <rdfs:comment>containing information about educational background: schools or institutions, gender issues (conditions affecting women's access to education), subjects and crucial works studied, people encountered, behaviour, awards, and qualifications gained</rdfs:comment>
+    <skos:definition>containing information about educational background: schools or institutions, gender issues (conditions affecting women's access to education), subjects and crucial works studied, people encountered, behaviour, awards, and qualifications gained</skos:definition>
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
   </owl:ObjectProperty>
@@ -2489,7 +3051,7 @@
     <ifi:TV_vbg>hasEducationAwarded</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>information about education related prizes, scholarships, etc.</rdfs:comment>
+    <skos:definition>information about education related prizes, scholarships, etc.</skos:definition>
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasEducation"/>
   </owl:AsymmetricProperty>
@@ -2508,7 +3070,7 @@
     <ifi:TV_vbg>hasEducationBehavioured</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>ecording rebellious or nonconformist attitudes during schooldays</rdfs:comment>
+    <skos:definition>ecording rebellious or nonconformist attitudes during schooldays</skos:definition>
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasEducation"/>
   </owl:AsymmetricProperty>
@@ -2628,24 +3190,6 @@
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:range rdf:resource="#Settlement"/>
     <rdfs:subPropertyOf rdf:resource="#hasExtentOfOeuvreConnectionToRegion"/>
-  </owl:AsymmetricProperty>
-  <owl:ObjectProperty rdf:about="#hasFamily">
-    <ifi:TV_pl>hasFamily</ifi:TV_pl>
-    <ifi:TV_sg>hasFamilies</ifi:TV_sg>
-    <ifi:TV_vbg>hasFamilied</ifi:TV_vbg>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
-  </owl:ObjectProperty>
-  <owl:AsymmetricProperty rdf:about="#hasFather">
-    <ifi:TV_pl>hasFather</ifi:TV_pl>
-    <ifi:TV_sg>hasFathers</ifi:TV_sg>
-    <ifi:TV_vbg>hasFathered</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Male"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasParent"/>
   </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasFictionalization">
     <ifi:TV_pl>hasFictionalization</ifi:TV_pl>
@@ -2807,15 +3351,6 @@
     <rdfs:range rdf:resource="#Work"/>
     <rdfs:subPropertyOf rdf:resource="#hasEducation"/>
   </owl:AsymmetricProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasFriendOrAssociate">
-    <ifi:TV_pl>hasFriendOrAssociate</ifi:TV_pl>
-    <ifi:TV_sg>hasFriendOrAssociates</ifi:TV_sg>
-    <ifi:TV_vbg>hasFriendOrAssociated</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasRelationship"/>
-  </owl:IrreflexiveProperty>
   <owl:AsymmetricProperty rdf:about="#hasGenericRange">
     <ifi:TV_pl>hasGenericRange</ifi:TV_pl>
     <ifi:TV_sg>hasGenericRanges</ifi:TV_sg>
@@ -2899,6 +3434,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:subPropertyOf rdf:resource="#hasCulturalFormation"/>
   </owl:AsymmetricProperty>
+
   <owl:AsymmetricProperty rdf:about="#hasGivenName">
     <ifi:TV_pl>hasGivenName</ifi:TV_pl>
     <ifi:TV_sg>hasGivenNames</ifi:TV_sg>
@@ -2907,80 +3443,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:subPropertyOf rdf:resource="#hasName"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasGrandchild">
-    <ifi:TV_pl>hasGrandchild</ifi:TV_pl>
-    <ifi:TV_sg>hasGrandchilds</ifi:TV_sg>
-    <ifi:TV_vbg>hasGrandchilded</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
-    <owl:inverseOf rdf:resource="#hasGrandparent"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasGranddaughter">
-    <ifi:TV_pl>hasGranddaughter</ifi:TV_pl>
-    <ifi:TV_sg>hasGranddaughters</ifi:TV_sg>
-    <ifi:TV_vbg>hasGranddaughtered</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Female"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasGrandchild"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasGrandfather">
-    <ifi:TV_pl>hasGrandfather</ifi:TV_pl>
-    <ifi:TV_sg>hasGrandfathers</ifi:TV_sg>
-    <ifi:TV_vbg>hasGrandfathered</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Male"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasGrandparent"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasGrandmother">
-    <ifi:TV_pl>hasGrandmother</ifi:TV_pl>
-    <ifi:TV_sg>hasGrandmothers</ifi:TV_sg>
-    <ifi:TV_vbg>hasGrandmothered</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Female"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasGrandparent"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasGrandparent">
-    <ifi:TV_pl>hasGrandparent</ifi:TV_pl>
-    <ifi:TV_sg>hasGrandparents</ifi:TV_sg>
-    <ifi:TV_vbg>hasGrandparented</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasGrandson">
-    <ifi:TV_pl>hasGrandson</ifi:TV_pl>
-    <ifi:TV_sg>hasGrandsons</ifi:TV_sg>
-    <ifi:TV_vbg>hasGrandsoned</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Male"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasGrandchild"/>
-  </owl:AsymmetricProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasGuardian">
-    <ifi:TV_pl>hasGuardian</ifi:TV_pl>
-    <ifi:TV_sg>hasGuardians</ifi:TV_sg>
-    <ifi:TV_vbg>hasGuardianed</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
-  </owl:IrreflexiveProperty>
+
   <owl:AsymmetricProperty rdf:about="#hasHealthInformation">
     <ifi:TV_pl>hasHealthInformation</ifi:TV_pl>
     <ifi:TV_sg>hasHealthInformations</ifi:TV_sg>
@@ -3105,23 +3568,13 @@
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasHealthIssue"/>
   </owl:AsymmetricProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasHusband">
-    <ifi:TV_pl>hasHusband</ifi:TV_pl>
-    <ifi:TV_sg>hasHusbands</ifi:TV_sg>
-    <ifi:TV_vbg>hasHusbanded</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Male"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasSpouse"/>
-  </owl:IrreflexiveProperty>
   <owl:AsymmetricProperty rdf:about="#hasIndexedName">
     <ifi:TV_pl>hasIndexedName</ifi:TV_pl>
     <ifi:TV_sg>hasIndexedNames</ifi:TV_sg>
     <ifi:TV_vbg>hasIndexedNamed</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>name-forms that are standard to the British Library, Library of Congress, or other authoritative source, but that differ from the Orlando Project standard name</rdfs:comment>
+    <skos:definition>name-forms that are standard to the British Library, Library of Congress, or other authoritative source, but that differ from the Orlando Project standard name</skos:definition>
     <rdfs:subPropertyOf rdf:resource="#hasName"/>
   </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasInfluence">
@@ -3199,33 +3652,7 @@
     <rdfs:range rdf:resource="#Settlement"/>
     <rdfs:subPropertyOf rdf:resource="#hasInfluenceConnectionToRegion"/>
   </owl:AsymmetricProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasInstructor">
-    <ifi:TV_pl>hasInstructor</ifi:TV_pl>
-    <ifi:TV_sg>hasInstructors</ifi:TV_sg>
-    <ifi:TV_vbg>hasInstructored</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>identifies teachers important in a writer's development</rdfs:comment>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasEducation"/>
-  </owl:IrreflexiveProperty>
-  <owl:ObjectProperty rdf:about="#hasIntellectualInfluence">
-    <ifi:TV_pl>hasIntellectualInfluence</ifi:TV_pl>
-    <ifi:TV_sg>hasIntellectualInfluences</ifi:TV_sg>
-    <ifi:TV_vbg>hasIntellectualInfluenced</ifi:TV_vbg>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasInfluence"/>
-  </owl:ObjectProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasIntimateRelationship">
-    <ifi:TV_pl>hasIntimateRelation</ifi:TV_pl>
-    <ifi:TV_sg>hasIntimateRelations</ifi:TV_sg>
-    <ifi:TV_vbg>hasIntimateRelationed</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasRelationship"/>
-  </owl:IrreflexiveProperty>
+
   <owl:AsymmetricProperty rdf:about="#hasJob">
     <ifi:TV_pl>hasJob</ifi:TV_pl>
     <ifi:TV_sg>hasJobs</ifi:TV_sg>
@@ -3260,7 +3687,7 @@
     <ifi:TV_vbg>hasLanguaged</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>languages (other than English) that a writer knew as mother tongue or in her formative years</rdfs:comment>
+    <skos:definition>languages (other than English) that a writer knew as mother tongue or in her formative years</skos:definition>
     <rdfs:subPropertyOf rdf:resource="#hasCulturalFormation"/>
   </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasLastLiteraryActivity">
@@ -3732,7 +4159,7 @@
     <ifi:TV_vbg>hasMarriedNamed</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>a surname adopted on marriage</rdfs:comment>
+    <skos:definition>a surname adopted on marriage</skos:definition>
     <rdfs:subPropertyOf rdf:resource="#hasName"/>
   </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasMaterialConditions">
@@ -4260,17 +4687,6 @@
     <rdfs:range rdf:resource="#Settlement"/>
     <rdfs:subPropertyOf rdf:resource="#hasModeOfPubSubscriptionConnectionToRegion"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasMother">
-    <ifi:TV_pl>hasMother</ifi:TV_pl>
-    <ifi:TV_sg>hasMothers</ifi:TV_sg>
-    <ifi:TV_vbg>hasMothered</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Female"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasParent"/>
-  </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasMotive">
     <ifi:TV_pl>hasMotive</ifi:TV_pl>
     <ifi:TV_sg>hasMotives</ifi:TV_sg>
@@ -4358,15 +4774,6 @@
     <ifi:TV_vbg>hasMotiveSelfEvidented</ifi:TV_vbg>
     <rdfs:subPropertyOf rdf:resource="#hasMotive"/>
   </owl:ObjectProperty>
-  <owl:AsymmetricProperty rdf:about="#hasName">
-    <ifi:TV_pl>hasName</ifi:TV_pl>
-    <ifi:TV_sg>hasNames</ifi:TV_sg>
-    <ifi:TV_vbg>hasNamed</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasProperty"/>
-  </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasNationalHeritage">
     <ifi:TV_pl>hasNationalHeritage</ifi:TV_pl>
     <ifi:TV_sg>hasNationalHeritages</ifi:TV_sg>
@@ -4390,19 +4797,10 @@
     <ifi:TV_vbg>hasNationalityIssued</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>discussion around an individual's nationality, especially where this was shifting, contested, or problematic</rdfs:comment>
+    <skos:definition>discussion around an individual's nationality, especially where this was shifting, contested, or problematic</skos:definition>
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasNationality"/>
   </owl:AsymmetricProperty>
-  <owl:ObjectProperty rdf:about="#hasNephew">
-    <ifi:TV_pl>hasNephew</ifi:TV_pl>
-    <ifi:TV_sg>hasNephews</ifi:TV_sg>
-    <ifi:TV_vbg>hasNephewed</ifi:TV_vbg>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Male"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasJuniorCollateralRelation"/>
-  </owl:ObjectProperty>
   <owl:AsymmetricProperty rdf:about="#hasNickname">
     <ifi:TV_pl>hasNickname</ifi:TV_pl>
     <ifi:TV_sg>hasNicknames</ifi:TV_sg>
@@ -4411,15 +4809,6 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:subPropertyOf rdf:resource="#hasName"/>
   </owl:AsymmetricProperty>
-  <owl:ObjectProperty rdf:about="#hasNiece">
-    <ifi:TV_pl>hasNiece</ifi:TV_pl>
-    <ifi:TV_sg>hasNieces</ifi:TV_sg>
-    <ifi:TV_vbg>hasNieced</ifi:TV_vbg>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Female"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasJuniorCollateralRelation"/>
-  </owl:ObjectProperty>
   <owl:AsymmetricProperty rdf:about="#hasNonBookMedia">
     <ifi:TV_pl>hasNonBookMedia</ifi:TV_pl>
     <ifi:TV_sg>hasNonBookMedias</ifi:TV_sg>
@@ -4495,42 +4884,6 @@
     <rdfs:range rdf:resource="#Settlement"/>
     <rdfs:subPropertyOf rdf:resource="#hasNonBookMediaConnectionToRegion"/>
   </owl:AsymmetricProperty>
-  <owl:ObjectProperty rdf:about="#hasNumberOfChildren">
-    <ifi:TV_pl>hasNumberOfChildren</ifi:TV_pl>
-    <ifi:TV_sg>hasNumberOfChildrens</ifi:TV_sg>
-    <ifi:TV_vbg>hasNumberOfChildrened</ifi:TV_vbg>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasChild"/>
-  </owl:ObjectProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasOtherFamilyRelation">
-    <ifi:TV_pl>hasOtherFamilyRelation</ifi:TV_pl>
-    <ifi:TV_sg>hasOtherFamilyRelations</ifi:TV_sg>
-    <ifi:TV_vbg>hasOtherFamilyRelationed</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
-  </owl:IrreflexiveProperty>
-  <owl:AsymmetricProperty rdf:about="#hasParent">
-    <ifi:TV_pl>hasParent</ifi:TV_pl>
-    <ifi:TV_sg>hasParents</ifi:TV_sg>
-    <ifi:TV_vbg>hasParented</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
-  </owl:AsymmetricProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasPartner">
-    <ifi:TV_pl>hasPartner</ifi:TV_pl>
-    <ifi:TV_sg>hasPartners</ifi:TV_sg>
-    <ifi:TV_vbg>hasPartnered</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
-  </owl:IrreflexiveProperty>
   <owl:AsymmetricProperty rdf:about="#hasPerfomance">
     <ifi:TV_pl>hasPerfomance</ifi:TV_pl>
     <ifi:TV_sg>hasPerfomances</ifi:TV_sg>
@@ -4693,7 +5046,7 @@
     <ifi:TV_vbg>hasPoliticalAffiliationed</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>participation in organizations, whether in mainstream political parties or loose groupings (like those who supported or opposed capital punishment, for instance)</rdfs:comment>
+    <skos:definition>participation in organizations, whether in mainstream political parties or loose groupings (like those who supported or opposed capital punishment, for instance)</skos:definition>
     <rdfs:subPropertyOf rdf:resource="#hasCulturalFormation"/>
   </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasPoliticalAffiliationConnectionToAddress">
@@ -4956,7 +5309,7 @@
     <ifi:TV_vbg>hasPseudonymed</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>names assumed by writers for putting on title pages, whether they consist of a single word or a phrase</rdfs:comment>
+    <skos:definition>names assumed by writers for putting on title pages, whether they consist of a single word or a phrase</skos:definition>
     <rdfs:subPropertyOf rdf:resource="#hasName"/>
   </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasPubPlace">
@@ -5115,7 +5468,7 @@
     <ifi:TV_vbg>hasRaceColoured</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>capture personal information about racial origins</rdfs:comment>
+    <skos:definition>capture personal information about racial origins</skos:definition>
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasCulturalFormation"/>
   </owl:AsymmetricProperty>
@@ -5125,7 +5478,7 @@
     <ifi:TV_vbg>hasRaceEthnicityColourIssued</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>discussion around an individual's race, ethnicity, or colour, especially where these were shifting, contested, or problematic</rdfs:comment>
+    <skos:definition>discussion around an individual's race, ethnicity, or colour, especially where these were shifting, contested, or problematic</skos:definition>
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasEthnicity"/>
     <rdfs:subPropertyOf rdf:resource="#hasRaceColour"/>
@@ -5505,16 +5858,6 @@
     <rdfs:range rdf:resource="#Settlement"/>
     <rdfs:subPropertyOf rdf:resource="#hasRecognitionsConnectionToRegion"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasRelationsWithPublisher">
-    <ifi:TV_pl>hasRelationsWithPublisher</ifi:TV_pl>
-    <ifi:TV_sg>hasRelationsWithPublishers</ifi:TV_sg>
-    <ifi:TV_vbg>hasRelationsWithPublishered</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Place"/>
-    <rdfs:subPropertyOf rdf:resource="#toBeSorted"/>
-  </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasRelationsWithPublisherConnectionToAddress">
     <ifi:TV_pl>hasRelationsWithPublisherAddress</ifi:TV_pl>
     <ifi:TV_sg>hasRelationsWithPublisherAddresses</ifi:TV_sg>
@@ -5560,6 +5903,17 @@
     <rdfs:range rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasRelationsWithPublisher"/>
   </owl:ObjectProperty>
+  <owl:AsymmetricProperty rdf:about="#hasRelationsWithPublisher">
+    <ifi:TV_pl>hasRelationsWithPublisher</ifi:TV_pl>
+    <ifi:TV_sg>hasRelationsWithPublishers</ifi:TV_sg>
+    <ifi:TV_vbg>hasRelationsWithPublishered</ifi:TV_vbg>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Person"/>
+    <rdfs:range rdf:resource="#Place"/>
+    <rdfs:subPropertyOf rdf:resource="#toBeSorted"/>
+  </owl:AsymmetricProperty>
+
   <owl:AsymmetricProperty rdf:about="#hasRelationsWithPublisherConnectionToRegion">
     <ifi:TV_pl>hasRelationsWithPublisherRegion</ifi:TV_pl>
     <ifi:TV_sg>hasRelationsWithPublisherRegions</ifi:TV_sg>
@@ -5586,21 +5940,13 @@
     <ifi:TV_vbg>hasRelationsWithPublisherProfessionaled</ifi:TV_vbg>
     <rdfs:subPropertyOf rdf:resource="#hasRelationsWithPublisher"/>
   </owl:ObjectProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasRelationship">
-    <ifi:TV_pl>hasRelationship</ifi:TV_pl>
-    <ifi:TV_sg>hasRelationships</ifi:TV_sg>
-    <ifi:TV_vbg>hasRelationshiped</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-  </owl:IrreflexiveProperty>
   <owl:AsymmetricProperty rdf:about="#hasReligiousName">
     <ifi:TV_pl>hasReligiousName</ifi:TV_pl>
     <ifi:TV_sg>hasReligiousNames</ifi:TV_sg>
     <ifi:TV_vbg>hasReligiousNamed</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>names acquired through religious practice</rdfs:comment>
+    <skos:definition>names acquired through religious practice</skos:definition>
     <rdfs:subPropertyOf rdf:resource="#hasName"/>
   </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasResponse">
@@ -6284,7 +6630,7 @@
     <ifi:TV_vbg>hasRoyalNamed</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>records names (not titles) which are based on royal status</rdfs:comment>
+    <skos:definition>records names (not titles) which are based on royal status</skos:definition>
     <rdfs:subPropertyOf rdf:resource="#hasName"/>
   </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasSchool">
@@ -6303,7 +6649,7 @@
     <ifi:TV_vbg>hasSchoolLeveled</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>notes level of education catered to</rdfs:comment>
+    <skos:definition>notes level of education catered to</skos:definition>
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasSchool"/>
   </owl:AsymmetricProperty>
@@ -6313,7 +6659,7 @@
     <ifi:TV_vbg>hasSchoolTyped</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>has the following possible values: Boarding (schools where their pupils live and sleep), Grammar (selective secondary schools, formerly teaching Latin and occasionally Greek), Private (fee-paying), State (provided out of taxes), DameSchool (informal, usually primary school run by unqualified woman), DaySchool (in contrast with boarding schools), Comprehensive (usually large state schools taking entire ability range), SecondaryModern (schools which formerly took those who failed grammar school entrance, the 11+ exam), TradeSchool (secondary or post-secondary institution teaching trade skills), Prep (schools preparing pupils, generally boys, to enter the respected fee-paying public schools)</rdfs:comment>
+    <skos:definition>has the following possible values: Boarding (schools where their pupils live and sleep), Grammar (selective secondary schools, formerly teaching Latin and occasionally Greek), Private (fee-paying), State (provided out of taxes), DameSchool (informal, usually primary school run by unqualified woman), DaySchool (in contrast with boarding schools), Comprehensive (usually large state schools taking entire ability range), SecondaryModern (schools which formerly took those who failed grammar school entrance, the 11+ exam), TradeSchool (secondary or post-secondary institution teaching trade skills), Prep (schools preparing pupils, generally boys, to enter the respected fee-paying public schools)</skos:definition>
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasSchool"/>
   </owl:AsymmetricProperty>
@@ -6323,17 +6669,11 @@
     <ifi:TV_vbg>hasSelfConNamed</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>self-chosen names which are used in everyday life rather than on title-pages</rdfs:comment>
+    <skos:definition>self-chosen names which are used in everyday life rather than on title-pages</skos:definition>
     <rdfs:subPropertyOf rdf:resource="#hasName"/>
   </owl:AsymmetricProperty>
-  <owl:ObjectProperty rdf:about="#hasSeniorCollateralRelation">
-    <ifi:TV_pl>hasSeniorCollateralRelation</ifi:TV_pl>
-    <ifi:TV_sg>hasSeniorCollateralRelations</ifi:TV_sg>
-    <ifi:TV_vbg>hasSeniorCollateralRelationed</ifi:TV_vbg>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasCollateralRelation"/>
-  </owl:ObjectProperty>
+
+
   <owl:AsymmetricProperty rdf:about="#hasSerialization">
     <ifi:TV_pl>hasSerialization</ifi:TV_pl>
     <ifi:TV_sg>hasSerializations</ifi:TV_sg>
@@ -6583,17 +6923,8 @@
     <ifi:TV_vbg>hasSexualitIssued</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>encodes discussions of sexuality in terms of culture, behaviour, or identity</rdfs:comment>
+    <skos:definition>encodes discussions of sexuality in terms of culture, behaviour, or identity</skos:definition>
     <rdfs:subPropertyOf rdf:resource="#hasCulturalFormation"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasSibling">
-    <ifi:TV_pl>hasSibling</ifi:TV_pl>
-    <ifi:TV_sg>hasSiblings</ifi:TV_sg>
-    <ifi:TV_vbg>hasSiblinged</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
   </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasSignificantActivity">
     <ifi:TV_pl>hasSignificantActivity</ifi:TV_pl>
@@ -6604,38 +6935,6 @@
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasActivity"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasSister">
-    <ifi:TV_pl>hasSister</ifi:TV_pl>
-    <ifi:TV_sg>hasSisters</ifi:TV_sg>
-    <ifi:TV_vbg>hasSistered</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Female"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasSibling"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasSon">
-    <ifi:TV_pl>hasSon</ifi:TV_pl>
-    <ifi:TV_sg>hasSons</ifi:TV_sg>
-    <ifi:TV_vbg>hasSoned</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Male"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasChild"/>
-  </owl:AsymmetricProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasSpouse">
-    <ifi:TV_pl>hasSpouse</ifi:TV_pl>
-    <ifi:TV_sg>hasSpouses</ifi:TV_sg>
-    <ifi:TV_vbg>hasSpoused</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
-  </owl:IrreflexiveProperty>
   <owl:AsymmetricProperty rdf:about="#hasStandardName">
     <ifi:TV_pl>hasStandardName</ifi:TV_pl>
     <ifi:TV_sg>hasStandardNames</ifi:TV_sg>
@@ -6643,111 +6942,6 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:subPropertyOf rdf:resource="#hasName"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasStepChild">
-    <ifi:TV_pl>hasStepChild</ifi:TV_pl>
-    <ifi:TV_sg>hasStepChilds</ifi:TV_sg>
-    <ifi:TV_vbg>hasStepChilded</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasStepFamily"/>
-  </owl:AsymmetricProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasStepFamily">
-    <ifi:TV_pl>hasStepFamily</ifi:TV_pl>
-    <ifi:TV_sg>hasStepFamilies</ifi:TV_sg>
-    <ifi:TV_vbg>hasStepFamilied</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
-    <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
-  </owl:IrreflexiveProperty>
-  <owl:AsymmetricProperty rdf:about="#hasStepParent">
-    <ifi:TV_pl>hasStepParent</ifi:TV_pl>
-    <ifi:TV_sg>hasStepParents</ifi:TV_sg>
-    <ifi:TV_vbg>hasStepParented</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasStepFamily"/>
-    <owl:inverseOf rdf:resource="#hasStepChild"/>
-  </owl:AsymmetricProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasStepSibling">
-    <ifi:TV_pl>hasStepSibling</ifi:TV_pl>
-    <ifi:TV_sg>hasStepSiblings</ifi:TV_sg>
-    <ifi:TV_vbg>hasStepSiblinged</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasStepFamily"/>
-  </owl:IrreflexiveProperty>
-  <owl:AsymmetricProperty rdf:about="#hasStepbrother">
-    <ifi:TV_pl>hasStepbrother</ifi:TV_pl>
-    <ifi:TV_sg>hasStepbrothers</ifi:TV_sg>
-    <ifi:TV_vbg>hasStepbrothered</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Male"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasStepSibling"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasStepdaughter">
-    <ifi:TV_pl>hasStepdaughter</ifi:TV_pl>
-    <ifi:TV_sg>hasStepdaughters</ifi:TV_sg>
-    <ifi:TV_vbg>hasStepdaughtered</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Female"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasStepChild"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasStepfather">
-    <ifi:TV_pl>hasStepfather</ifi:TV_pl>
-    <ifi:TV_sg>hasStepfathers</ifi:TV_sg>
-    <ifi:TV_vbg>hasStepfathered</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Male"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasStepParent"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasStepmother">
-    <ifi:TV_pl>hasStepmother</ifi:TV_pl>
-    <ifi:TV_sg>hasStepmothers</ifi:TV_sg>
-    <ifi:TV_vbg>hasStepmothered</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Female"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasStepParent"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasStepsister">
-    <ifi:TV_pl>hasStepsister</ifi:TV_pl>
-    <ifi:TV_sg>hasStepsisters</ifi:TV_sg>
-    <ifi:TV_vbg>hasStepsistered</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Female"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasStepSibling"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasStepson">
-    <ifi:TV_pl>hasStepson</ifi:TV_pl>
-    <ifi:TV_sg>hasStepsons</ifi:TV_sg>
-    <ifi:TV_vbg>hasStepsoned</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Male"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasStepChild"/>
   </owl:AsymmetricProperty>
   <owl:IrreflexiveProperty rdf:about="#hasStudent">
     <ifi:TV_pl>hasStudent</ifi:TV_pl>
@@ -6840,7 +7034,7 @@
     <ifi:TV_vbg>hasSurnamed</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>records the last name of the subject at birth</rdfs:comment>
+    <skos:definition>records the last name of the subject at birth</skos:definition>
     <rdfs:subPropertyOf rdf:resource="#hasName"/>
   </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasTitle">
@@ -6849,7 +7043,7 @@
     <ifi:TV_vbg>hasTitled</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:comment>captures titles in the British and other peerages</rdfs:comment>
+    <skos:definition>captures titles in the British and other peerages</skos:definition>
     <rdfs:subPropertyOf rdf:resource="#hasName"/>
   </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasTypeOfPress">
@@ -6926,17 +7120,6 @@
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:range rdf:resource="#Settlement"/>
     <rdfs:subPropertyOf rdf:resource="#hasTypeOfPressConnectionToRegion"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasUncle">
-    <ifi:TV_pl>hasUncle</ifi:TV_pl>
-    <ifi:TV_sg>hasUncles</ifi:TV_sg>
-    <ifi:TV_vbg>hasUncled</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Male"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasSeniorCollateralRelation"/>
   </owl:AsymmetricProperty>
   <owl:AsymmetricProperty rdf:about="#hasViolence">
     <ifi:TV_pl>hasViolence</ifi:TV_pl>
@@ -7088,16 +7271,6 @@
     <rdfs:range rdf:resource="#Settlement"/>
     <rdfs:subPropertyOf rdf:resource="#hasWealthConnectionToRegion"/>
   </owl:AsymmetricProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasWife">
-    <ifi:TV_pl>hasWife</ifi:TV_pl>
-    <ifi:TV_sg>hasWifes</ifi:TV_sg>
-    <ifi:TV_vbg>hasWifed</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Female"/>
-    <rdfs:range rdf:resource="#Transgendered"/>
-    <rdfs:subPropertyOf rdf:resource="#hasSpouse"/>
-  </owl:IrreflexiveProperty>
   <owl:AsymmetricProperty rdf:about="#hasWritingMilestone">
     <ifi:TV_pl>hasWritingMilestone</ifi:TV_pl>
     <ifi:TV_sg>hasWritingMilestones</ifi:TV_sg>
@@ -7474,15 +7647,6 @@
     <rdfs:range rdf:resource="#Settlement"/>
     <rdfs:subPropertyOf rdf:resource="#livedConnectionToRegion"/>
   </owl:AsymmetricProperty>
-  <owl:IrreflexiveProperty rdf:about="#livesWith">
-    <ifi:TV_pl>livesWith</ifi:TV_pl>
-    <ifi:TV_sg>livesWiths</ifi:TV_sg>
-    <ifi:TV_vbg>livesWithed</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-    <rdfs:subPropertyOf rdf:resource="#hasFriendOrAssociate"/>
-  </owl:IrreflexiveProperty>
   <owl:AsymmetricProperty rdf:about="#marriage">
     <ifi:TV_pl>hasMarriage</ifi:TV_pl>
     <ifi:TV_sg>hasMarriages</ifi:TV_sg>
@@ -7981,5 +8145,4 @@
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasActivity"/>
   </owl:AsymmetricProperty>
-  <owl:Ontology rdf:about="http://www.semanticweb.org/jsimpson/ontologies/2014/10/untitled-ontology-70"/>
 </rdf:RDF>
