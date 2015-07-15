@@ -16,9 +16,9 @@
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
    xmlns:void="http://rdfs.org/ns/void#"
    xmlns:skosxl="http://www.w3.org/2008/05/skos-xl#" 
-   xmlns="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology.owl#" 
-   xml:base="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology.owl#"
-   xmlns:cwrc="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology.owl#">
+   xmlns="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#" 
+   xml:base="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"
+   xmlns:cwrc="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#">
  
    <owl:Ontology rdf:about="">
     <dc:title xml:lang="en">The Orlando Ontology</dc:title>
@@ -94,7 +94,7 @@
     <foaf:logo rdf:resource="http://www.cwrc.ca/wp-content/uploads/2010/11/CWRC_logo_v074.gif"/>
    </void:Dataset>
 
-
+ <!-- To dump eventually? -->
   <owl:AnnotationProperty rdf:about="http://attempto.ifi.uzh.ch/ace_lexicon#CN_pl"/>
   <owl:AnnotationProperty rdf:about="http://attempto.ifi.uzh.ch/ace_lexicon#CN_sg"/>
   <owl:AnnotationProperty rdf:about="http://attempto.ifi.uzh.ch/ace_lexicon#TV_pl"/>
@@ -151,7 +151,7 @@
     <rdfs:label xml:lang="en">A mailling or street addrese</rdfs:label>
     <foaf:name xml:lang="en">A mailling or street address</foaf:name>
     <rdfs:label xml:lang="fr">Une adresse postale ou de rue</rdfs:label>
-    <rdf:comment xml:lang="en">The postal address is the equivalent of a schema.org address and inherits all of the data from that vocabulary to markup a modern postral address.</rdf:comment>
+    <rdfs:comment xml:lang="en">The postal address is the equivalent of a schema.org address and inherits all of the data from that vocabulary to markup a modern postral address.</rdfs:comment>
     <foaf:name xml:lang="fr">A mailling or street address</foaf:name>
     <owl:sameAs rdf:resource="http://schema.org/PostalAddress"/>
     <ifi:CN_pl>Addresses</ifi:CN_pl>
@@ -162,7 +162,7 @@
   <owl:DeprecatedClass rdf:about="#Geog">
     <ifi:CN_pl>Geogs</ifi:CN_pl>
     <ifi:CN_sg>Geog</ifi:CN_sg>
-    <rdf:comment>Deprecated as contents are underspecified.</rdf:comment>
+    <rdfs:comment>Deprecated as contents are underspecified.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Place"/>
   </owl:DeprecatedClass>
 
@@ -172,7 +172,7 @@
     <foaf:name xml:lang="en">Place</foaf:name>
     <foaf:name xml:lang="fr">Endroit</foaf:name>
     <skos:definition xml:lang="en">A named place, wheter incorporated, settled or occupied.</skos:definition>
-    <rdf:comment xml:lang="en">Could be a populated place according to Geonames, but not necessarily so. Some places, such as cross-roads are named without having a population or settlement per say. The geonames is incosistent in this regards in that a populated place can be abandonned.</rdf:comment>
+    <rdfs:comment xml:lang="en">Could be a populated place according to Geonames, but not necessarily so. Some places, such as cross-roads are named without having a population or settlement per say. The geonames is incosistent in this regards in that a populated place can be abandonned.</rdfs:comment>
     <ifi:CN_pl>Places</ifi:CN_pl>
     <ifi:CN_sg>Place</ifi:CN_sg>
     <owl:equivalentClass rdf:resource="http://www.geonames.org/ontology#Feature"/>
@@ -189,7 +189,7 @@
     <foaf:name xml:lang="en">Place</foaf:name>
     <foaf:name xml:lang="fr">Région</foaf:name>
     <skos:definition xml:lang="en">A region is an loosely defined physical area larger than a place with a looser definition of identity / feature than a place.</skos:definition>
-    <rdf:comment xml:lang="en">It may be a good idea to deprecate this property in favour of Place like schema.org has. The only justification / use case in other vocabulary for this class is an administrative area, which is not the current definition of this class.</rdf:comment> 
+    <rdfs:comment xml:lang="en">It may be a good idea to deprecate this property in favour of Place like schema.org has. The only justification / use case in other vocabulary for this class is an administrative area, which is not the current definition of this class.</rdfs:comment> 
     <ifi:CN_pl>Regions</ifi:CN_pl>
     <ifi:CN_sg>Region</ifi:CN_sg>
     <owl:differentFrom rdf:resource="http://dbpedia.org/ontology/Region"/>
@@ -378,13 +378,14 @@
   </cwrc:Gender>
 
  <owl:deprecatedClass rdf:about="#Transgendered">
-  <rdf:comment xml:lang="en">Deprecated in favour of #Transgender.</rdf:comment>
+  <rdfs:comment xml:lang="en">Deprecated in favour of #Transgender.</rdfs:comment>
   <owl:equivalentClass rdf:resource="#Transgender"/>
  </owl:deprecatedClass>
 
 
   <!-- Basic relationships -->
   <owl:ObjectProperty rdf:about="#hasFamily">
+    <rdfs:label xml:lang="en">has Family</rdfs:label>
     <ifi:TV_pl>hasFamily</ifi:TV_pl>
     <ifi:TV_sg>hasFamilies</ifi:TV_sg>
     <ifi:TV_vbg>hasFamilied</ifi:TV_vbg>
@@ -393,6 +394,7 @@
   </owl:ObjectProperty>
 
   <owl:IrreflexiveProperty rdf:about="#hasFriendOrAssociate">
+    <rdfs:label xml:lang="en">has Friend And/Or Associate</rdfs:label>
     <ifi:TV_pl>hasFriendOrAssociate</ifi:TV_pl>
     <ifi:TV_sg>hasFriendOrAssociates</ifi:TV_sg>
     <ifi:TV_vbg>hasFriendOrAssociated</ifi:TV_vbg>
