@@ -17,7 +17,7 @@
    xmlns:void="http://rdfs.org/ns/void#"
    xmlns:skosxl="http://www.w3.org/2008/05/skos-xl#" 
    xmlns="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#" 
-   xml:base="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"
+   xml:base="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology"
    xmlns:cwrc="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#">
  
    <owl:Ontology rdf:about="">
@@ -113,6 +113,9 @@
    <owl:sameAs rdf:resource="http://erlangen-crm.org/current/E5.Event"/>
    <owl:sameAs rdf:resource="http://linkedevents.org/ontology/Event"/> 
    <owl:sameAs rdf:resource="http://en.wikipedia.org/wiki/Event"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
   </owl:Class>
 
    <owl:ObjectProperty rdf:ID="hasActor">
@@ -120,14 +123,18 @@
    <rdfs:comment xml:lang="en">An Actor in this event.</rdfs:comment>
    <rdfs:domain rdf:resource="#Event"/>
    <rdfs:range rdf:resource="#Actor"/>
-  <!--  <owl:sameAs rdf:resource="cidoc:P11B.participated_in"/>
-   Not ="P12F.occurred_in_the_presence_of --> 
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
   </owl:ObjectProperty>
 
   <owl:Class rdf:ID="Actor">
    <rdfs:label xml:lang="en">Actor</rdfs:label>
    <rdfs:comment xml:lang="en">A person performing a certain role within an event.</rdfs:comment>
    <owl:sameAs rdf:resource="http://erlangen-crm.org/current/E39.Actor"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
   </owl:Class>
 
   <owl:ObjectProperty rdf:ID="identity">
@@ -135,6 +142,9 @@
    <rdfs:comment xml:lang="en">The identity of the person who committed the act.</rdfs:comment>
    <rdfs:domain rdf:resource="#Actor"/>
    <rdfs:range rdf:resource="#Person"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
   </owl:ObjectProperty>
 
   <owl:ObjectProperty rdf:ID="inRole">
@@ -142,31 +152,43 @@
    <rdfs:comment xml:lang="en">The role taken on by this actor.</rdfs:comment>
    <rdfs:domain rdf:resource="#Actor"/>
    <rdfs:range rdf:resource="#Role"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
   </owl:ObjectProperty>
 
 
 <!-- Geo things -->
 
-  <owl:Class rdf:about="#Address">
+  <owl:Class rdf:ID="Address">
     <rdfs:label xml:lang="en">A mailling or street addrese</rdfs:label>
     <foaf:name xml:lang="en">A mailling or street address</foaf:name>
     <rdfs:label xml:lang="fr">Une adresse postale ou de rue</rdfs:label>
     <rdfs:comment xml:lang="en">The postal address is the equivalent of a schema.org address and inherits all of the data from that vocabulary to markup a modern postral address.</rdfs:comment>
-    <foaf:name xml:lang="fr">A mailling or street address</foaf:name>
+    <foaf:name xml:lang="fr">Une adresse postale ou de rue</foaf:name>
     <owl:sameAs rdf:resource="http://schema.org/PostalAddress"/>
     <ifi:CN_pl>Addresses</ifi:CN_pl>
     <ifi:CN_sg>Address</ifi:CN_sg>
     <rdfs:subClassOf rdf:resource="#Place"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
   </owl:Class>
 
-  <owl:DeprecatedClass rdf:about="#Geog">
+  <owl:Class rdf:ID="Geog">
+    <foaf:name xml:lang="en">Geography</foaf:name>
+    <rdfs:label xml:lang="en">Geography</rdfs:label>
     <ifi:CN_pl>Geogs</ifi:CN_pl>
     <ifi:CN_sg>Geog</ifi:CN_sg>
     <rdfs:comment>Deprecated as contents are underspecified.</rdfs:comment>
     <rdfs:subClassOf rdf:resource="#Place"/>
-  </owl:DeprecatedClass>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
+   <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DeprecatedClass"/>
+  </owl:Class>
 
-  <owl:Class rdf:about="#Place">
+  <owl:Class rdf:ID="Place">
     <rdfs:label xml:lang="en">Place</rdfs:label>
     <rdfs:label xml:lang="fr">Endroit</rdfs:label>
     <foaf:name xml:lang="en">Place</foaf:name>
@@ -181,9 +203,12 @@
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
     <owl:sameAs rdf:resource="http://geovocab.org/spatial#Feature"/>
     <owl:sameAs rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
   </owl:Class>
 
-  <owl:Class rdf:about="#Region">
+  <owl:Class rdf:ID="Region">
     <rdfs:label xml:lang="en">Region</rdfs:label>
     <rdfs:label xml:lang="fr">Région</rdfs:label>
     <foaf:name xml:lang="en">Place</foaf:name>
@@ -197,9 +222,12 @@
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
     <rdf:type rdf:resource="http://geovocab.org/spatial#Feature"/>
     <rdf:type rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
   </owl:Class>
 
-  <owl:Class rdf:about="#Settlement">
+  <owl:Class rdf:ID="Settlement">
     <rdfs:label xml:lang="en">Settlement</rdfs:label>
     <rdfs:label xml:lang="fr">Colonie</rdfs:label>
     <foaf:name xml:lang="en">Settlement</foaf:name>
@@ -212,22 +240,28 @@
     <owl:sameAs rdf:resource="http://dbpedia.org/resource/Human_settlement"/>
     <rdf:type rdf:resource="http://geovocab.org/spatial#Feature"/>  
     <rdf:type rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/> 
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
   </owl:Class>
 
   <!-- People -->
 
-  <owl:Class rdf:about="#Person">
+  <owl:Class rdf:ID="Person">
    <owl:comment>A natural person. Does the person need to be an author or will any person do? We can create a new class that consists only of authors.</owl:comment> 
    <ifi:CN_pl>Authors</ifi:CN_pl>
    <ifi:CN_sg>Author</ifi:CN_sg>
    <owl:sameAs rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
    <owl:sameAs rdf:resource="http://erlangen-crm.org/current/E21_Person"/>
    <owl:sameAs rdf:resource="http://dbpedia.org/ontology/Person"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
   </owl:Class>
 
   <!-- Names can be linked through skos:label property or built-in orlando properties -->
 
-  <owl:AsymmetricProperty rdf:about="#hasName">
+  <owl:AsymmetricProperty rdf:ID="hasName">
     <ifi:TV_pl>hasName</ifi:TV_pl>
     <ifi:TV_sg>hasNames</ifi:TV_sg>
     <ifi:TV_vbg>hasNamed</ifi:TV_vbg>
@@ -235,19 +269,25 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2008/05/skos#label"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
   </owl:AsymmetricProperty>
 
  
-  <owl:Class rdf:about="#NameAtBirth">
+  <owl:Class rdf:ID="NameAtBirth">
     <rdfs:label xml:lang="en">Name at Birth</rdfs:label>
     <rdfs:label xml:lang="fr">Nom à la Naissance</rdfs:label>
     <foaf:name xml:lang="en">Name</foaf:name>
     <foaf:name xml:lang="fr">Nom</foaf:name>
     <skosxl:literalForm xml:lang="en">Name</skosxl:literalForm> 
     <rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
   </owl:Class>
 
-  <owl:AsymmetricProperty rdf:about="#hasBirthName">
+  <owl:AsymmetricProperty rdf:ID="hasBirthName">
     <ifi:TV_pl>hasBirthName</ifi:TV_pl>
     <ifi:TV_sg>hasBirthNames</ifi:TV_sg>
     <ifi:TV_vbg>hasBirthNamed</ifi:TV_vbg>
@@ -256,9 +296,12 @@
     <skos:definition>all names borne at birth</skos:definition>
     <skos:definition>names given (not automatically inherited) at birth</skos:definition>
     <rdfs:subPropertyOf rdf:resource="#hasName"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
   </owl:AsymmetricProperty>
 
-  <owl:Class rdf:about="#MaidenName">
+  <owl:Class rdf:ID="MaidenName">
     <rdfs:label xml:lang="en">Maide Name</rdfs:label>
     <rdfs:label xml:lang="fr">Nom de fille</rdfs:label>
     <foaf:name xml:lang="en">Name</foaf:name>
@@ -266,7 +309,7 @@
    <rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
   </owl:Class>
 
-  <owl:Class rdf:about="#LegalName">
+  <owl:Class rdf:ID="LegalName">
     <rdfs:label xml:lang="en">Legal Name</rdfs:label>
     <rdfs:label xml:lang="fr">Nom Légal</rdfs:label>
     <foaf:name xml:lang="en">Name</foaf:name>
@@ -274,7 +317,7 @@
    <rdf:type rdf:resource="http://www.w3.org/2008/05/skos-xl#Label"/>
   </owl:Class>
 
-  <owl:Class rdf:about="#PenName">
+  <owl:Class rdf:ID="PenName">
     <rdfs:label xml:lang="en">Pen Name</rdfs:label>
     <rdfs:label xml:lang="fr">Nom de PLume</rdfs:label>
     <foaf:name xml:lang="en">Name</foaf:name>
@@ -287,7 +330,7 @@
 
   <!-- Sex -->
 
-  <owl:Class rdf:about="#Sex">
+  <owl:Class rdf:ID="Sex">
    <skos:definition xml:lang="en">The distinguishing peculiarity of male or female in human beings; the physical difference between male and female; the assemblage of properties or qualities by which male is distinguished from female.</skos:definition>
    <owl:comment xml:lang="en">No longer a subclass of Person.</owl:comment>
    <rdfs:label xml:lang="en">Sex</rdfs:label>
@@ -349,7 +392,7 @@
 
 <!-- Gender -->
 
-  <owl:Class rdf:about="#Gender">
+  <owl:Class rdf:ID="Gender">
    <rdfs:label xml:lang="en">Gender</rdfs:label>
    <rdfs:label xml:lang="fr">Genre</rdfs:label>
    <foaf:name xml:lang="en">Gender</foaf:name>
@@ -377,14 +420,14 @@
    <skos:inScheme rdf:resource="#Gender"/> 
   </cwrc:Gender>
 
- <owl:deprecatedClass rdf:about="#Transgendered">
+ <owl:deprecatedClass rdf:ID="Transgendered">
   <rdfs:comment xml:lang="en">Deprecated in favour of #Transgender.</rdfs:comment>
   <owl:equivalentClass rdf:resource="#Transgender"/>
  </owl:deprecatedClass>
 
 
   <!-- Basic relationships -->
-  <owl:ObjectProperty rdf:about="#hasFamily">
+  <owl:ObjectProperty rdf:ID="hasFamily">
     <rdfs:label xml:lang="en">has Family</rdfs:label>
     <ifi:TV_pl>hasFamily</ifi:TV_pl>
     <ifi:TV_sg>hasFamilies</ifi:TV_sg>
@@ -393,7 +436,7 @@
     <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
   </owl:ObjectProperty>
 
-  <owl:IrreflexiveProperty rdf:about="#hasFriendOrAssociate">
+  <owl:IrreflexiveProperty rdf:ID="hasFriendOrAssociate">
     <rdfs:label xml:lang="en">has Friend And/Or Associate</rdfs:label>
     <ifi:TV_pl>hasFriendOrAssociate</ifi:TV_pl>
     <ifi:TV_sg>hasFriendOrAssociates</ifi:TV_sg>
@@ -407,7 +450,7 @@
 
   <!-- Is this correct? -->
 
-  <owl:ObjectProperty rdf:about="#hasSeniorCollateralRelation">
+  <owl:ObjectProperty rdf:ID="hasSeniorCollateralRelation">
     <ifi:TV_pl>hasSeniorCollateralRelation</ifi:TV_pl>
     <ifi:TV_sg>hasSeniorCollateralRelations</ifi:TV_sg>   
     <ifi:TV_vbg>hasSeniorCollateralRelationed</ifi:TV_vbg>
@@ -417,7 +460,7 @@
   </owl:ObjectProperty>
 
 
-  <owl:IrreflexiveProperty rdf:about="#hasCollateralRelation"> 
+  <owl:IrreflexiveProperty rdf:ID="hasCollateralRelation"> 
     <ifi:TV_pl>hasCollateralRelation</ifi:TV_pl>
     <ifi:TV_sg>hasCollateralRelations</ifi:TV_sg>
     <ifi:TV_vbg>hasCollateralRelationed</ifi:TV_vbg>
@@ -433,7 +476,7 @@
     b) How are we going to assign provenance?
     c) Link to relationships vocabulary.
     -->
-  <owl:AsymmetricProperty rdf:about="#hasAncestor">
+  <owl:AsymmetricProperty rdf:ID="hasAncestor">
     <ifi:TV_pl>hasForebear</ifi:TV_pl>
     <ifi:TV_sg>hasForebears</ifi:TV_sg>
     <ifi:TV_vbg>hasForebeared</ifi:TV_vbg>
@@ -445,7 +488,7 @@
     <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
   </owl:AsymmetricProperty>
 
-  <owl:AsymmetricProperty rdf:about="#hasAunt">
+  <owl:AsymmetricProperty rdf:ID="hasAunt">
     <ifi:TV_pl>hasAunt</ifi:TV_pl>
     <ifi:TV_sg>hasAunts</ifi:TV_sg>
     <ifi:TV_vbg>hasAunted</ifi:TV_vbg>
@@ -456,7 +499,7 @@
     <rdfs:subPropertyOf rdf:resource="#hasSeniorCollateralRelation"/>
   </owl:AsymmetricProperty>
 
-  <owl:AsymmetricProperty rdf:about="#hasBrother">
+  <owl:AsymmetricProperty rdf:ID="hasBrother">
     <ifi:TV_pl>hasBrother</ifi:TV_pl>
     <ifi:TV_sg>hasBrothers</ifi:TV_sg>
     <ifi:TV_vbg>hasBrothered</ifi:TV_vbg>
@@ -464,10 +507,9 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:range rdf:resource="#Person"/>
-     
     <rdfs:subPropertyOf rdf:resource="#hasSibling"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasChild">
+  <owl:AsymmetricProperty rdf:ID="hasChild">
     <ifi:TV_pl>hasChild</ifi:TV_pl>
     <ifi:TV_sg>hasChilds</ifi:TV_sg>
     <ifi:TV_vbg>hasChilded</ifi:TV_vbg>
@@ -479,7 +521,7 @@
     <owl:inverseOf rdf:resource="#hasParent"/>
   </owl:AsymmetricProperty>
 
-  <owl:AsymmetricProperty rdf:about="#hasChildlessness">
+  <owl:AsymmetricProperty rdf:ID="hasChildlessness">
     <ifi:TV_pl>hasChildlessness</ifi:TV_pl>
     <ifi:TV_sg>hasChildlessnesses</ifi:TV_sg>
     <ifi:TV_vbg>hasChildlessnessed</ifi:TV_vbg>
@@ -490,7 +532,7 @@
     <owl:inverseOf rdf:resource="#hasChild"/>
   </owl:AsymmetricProperty>
 
-  <owl:IrreflexiveProperty rdf:about="#hasCousin">
+  <owl:IrreflexiveProperty rdf:ID="hasCousin">
     <ifi:TV_pl>hasCousin</ifi:TV_pl>
     <ifi:TV_sg>hasCousins</ifi:TV_sg>
     <ifi:TV_vbg>hasCousined</ifi:TV_vbg>
@@ -501,7 +543,7 @@
     <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
   </owl:IrreflexiveProperty>
 
-  <owl:AsymmetricProperty rdf:about="#hasDaughter">
+  <owl:AsymmetricProperty rdf:ID="hasDaughter">
     <ifi:TV_pl>hasDaughter</ifi:TV_pl>
     <ifi:TV_sg>hasDaughters</ifi:TV_sg>
     <ifi:TV_vbg>hasDaughtered</ifi:TV_vbg>
@@ -512,7 +554,7 @@
     <rdfs:subPropertyOf rdf:resource="#hasChild"/>
   </owl:AsymmetricProperty>
 
-  <owl:AsymmetricProperty rdf:about="#hasDescendant">
+  <owl:AsymmetricProperty rdf:ID="hasDescendant">
     <ifi:TV_pl>hasDescendant</ifi:TV_pl>
     <ifi:TV_sg>hasDescendants</ifi:TV_sg>
     <ifi:TV_vbg>hasDescendanted</ifi:TV_vbg>
@@ -525,7 +567,7 @@
     <owl:inverseOf rdf:resource="#hasAncestor"/>
   </owl:AsymmetricProperty>
 
-  <owl:AsymmetricProperty rdf:about="#hasFather">
+  <owl:AsymmetricProperty rdf:ID="hasFather">
     <ifi:TV_pl>hasFather</ifi:TV_pl>
     <ifi:TV_sg>hasFathers</ifi:TV_sg>
     <ifi:TV_vbg>hasFathered</ifi:TV_vbg>
@@ -537,7 +579,7 @@
   </owl:AsymmetricProperty>
 
 
-  <owl:AsymmetricProperty rdf:about="#hasGrandchild">
+  <owl:AsymmetricProperty rdf:ID="hasGrandchild">
     <ifi:TV_pl>hasGrandchild</ifi:TV_pl>
     <ifi:TV_sg>hasGrandchilds</ifi:TV_sg>
     <ifi:TV_vbg>hasGrandchilded</ifi:TV_vbg>
@@ -548,18 +590,19 @@
     <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
     <owl:inverseOf rdf:resource="#hasGrandparent"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasGranddaughter">
+
+  <owl:AsymmetricProperty rdf:ID="hasGranddaughter">
     <ifi:TV_pl>hasGranddaughter</ifi:TV_pl>
     <ifi:TV_sg>hasGranddaughters</ifi:TV_sg>
     <ifi:TV_vbg>hasGranddaughtered</ifi:TV_vbg>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-     
+    <rdfs:range rdf:resource="#Person"/> 
     <rdfs:subPropertyOf rdf:resource="#hasGrandchild"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasGrandfather">
+
+  <owl:AsymmetricProperty rdf:ID="hasGrandfather">
     <ifi:TV_pl>hasGrandfather</ifi:TV_pl>
     <ifi:TV_sg>hasGrandfathers</ifi:TV_sg>
     <ifi:TV_vbg>hasGrandfathered</ifi:TV_vbg>
@@ -570,19 +613,8 @@
      
     <rdfs:subPropertyOf rdf:resource="#hasGrandparent"/>
   </owl:AsymmetricProperty>
- 
-  <owl:AsymmetricProperty rdf:about="#hasGrandfather">
-    <ifi:TV_pl>hasGrandfather</ifi:TV_pl>
-    <ifi:TV_sg>hasGrandfathers</ifi:TV_sg>
-    <ifi:TV_vbg>hasGrandfathered</ifi:TV_vbg>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#IrreflexiveProperty"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#Person"/>
-    <rdfs:range rdf:resource="#Person"/>
-     
-    <rdfs:subPropertyOf rdf:resource="#hasGrandparent"/>
-  </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasGrandmother">
+
+  <owl:AsymmetricProperty rdf:ID="hasGrandmother">
     <ifi:TV_pl>hasGrandmother</ifi:TV_pl>
     <ifi:TV_sg>hasGrandmothers</ifi:TV_sg>
     <ifi:TV_vbg>hasGrandmothered</ifi:TV_vbg>
@@ -593,7 +625,8 @@
      
     <rdfs:subPropertyOf rdf:resource="#hasGrandparent"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasGrandparent">
+
+  <owl:AsymmetricProperty rdf:ID="hasGrandparent">
     <ifi:TV_pl>hasGrandparent</ifi:TV_pl>
     <ifi:TV_sg>hasGrandparents</ifi:TV_sg>
     <ifi:TV_vbg>hasGrandparented</ifi:TV_vbg>
@@ -603,7 +636,8 @@
     <rdfs:range rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasGrandson">   
+
+  <owl:AsymmetricProperty rdf:ID="hasGrandson">   
     <ifi:TV_pl>hasGrandson</ifi:TV_pl>   
     <ifi:TV_sg>hasGrandsons</ifi:TV_sg>   
     <ifi:TV_vbg>hasGrandsoned</ifi:TV_vbg>   
@@ -614,7 +648,8 @@
      
     <rdfs:subPropertyOf rdf:resource="#hasGrandchild"/> 
   </owl:AsymmetricProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasGuardian">  
+
+  <owl:IrreflexiveProperty rdf:ID="hasGuardian">  
     <ifi:TV_pl>hasGuardian</ifi:TV_pl>   
     <ifi:TV_sg>hasGuardians</ifi:TV_sg>   
     <ifi:TV_vbg>hasGuardianed</ifi:TV_vbg>   
@@ -623,7 +658,8 @@
     <rdfs:range rdf:resource="#Person"/> 
     <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
   </owl:IrreflexiveProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasHusband">
+
+  <owl:IrreflexiveProperty rdf:ID="hasHusband">
     <ifi:TV_pl>hasHusband</ifi:TV_pl>
     <ifi:TV_sg>hasHusbands</ifi:TV_sg>
     <ifi:TV_vbg>hasHusbanded</ifi:TV_vbg>
@@ -634,7 +670,7 @@
     <rdfs:subPropertyOf rdf:resource="#hasSpouse"/>
   </owl:IrreflexiveProperty>
 
-  <owl:IrreflexiveProperty rdf:about="#hasInstructor">
+  <owl:IrreflexiveProperty rdf:ID="hasInstructor">
     <ifi:TV_pl>hasInstructor</ifi:TV_pl>
     <ifi:TV_sg>hasInstructors</ifi:TV_sg>
     <ifi:TV_vbg>hasInstructored</ifi:TV_vbg>
@@ -645,14 +681,15 @@
     <rdfs:subPropertyOf rdf:resource="#hasEducation"/>
   </owl:IrreflexiveProperty>
 
-  <owl:ObjectProperty rdf:about="#hasIntellectualInfluence">
+  <owl:ObjectProperty rdf:ID="hasIntellectualInfluence">
     <ifi:TV_pl>hasIntellectualInfluence</ifi:TV_pl>
     <ifi:TV_sg>hasIntellectualInfluences</ifi:TV_sg>
     <ifi:TV_vbg>hasIntellectualInfluenced</ifi:TV_vbg>
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasInfluence"/>
   </owl:ObjectProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasIntimateRelationship">
+
+  <owl:IrreflexiveProperty rdf:ID="hasIntimateRelationship">
     <ifi:TV_pl>hasIntimateRelation</ifi:TV_pl>
     <ifi:TV_sg>hasIntimateRelations</ifi:TV_sg>
     <ifi:TV_vbg>hasIntimateRelationed</ifi:TV_vbg>
@@ -662,7 +699,8 @@
     <rdfs:range rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasRelationship"/>
   </owl:IrreflexiveProperty>
-  <owl:AsymmetricProperty rdf:about="#hasMother">
+
+  <owl:AsymmetricProperty rdf:ID="hasMother">
     <ifi:TV_pl>hasMother</ifi:TV_pl>
     <ifi:TV_sg>hasMothers</ifi:TV_sg>
     <ifi:TV_vbg>hasMothered</ifi:TV_vbg>
@@ -673,7 +711,8 @@
      
     <rdfs:subPropertyOf rdf:resource="#hasParent"/>
   </owl:AsymmetricProperty>
-  <owl:ObjectProperty rdf:about="#hasNephew">
+
+  <owl:ObjectProperty rdf:ID="hasNephew">
     <ifi:TV_pl>hasNephew</ifi:TV_pl>
     <ifi:TV_sg>hasNephews</ifi:TV_sg>
     <ifi:TV_vbg>hasNephewed</ifi:TV_vbg>
@@ -682,7 +721,8 @@
      
     <rdfs:subPropertyOf rdf:resource="#hasJuniorCollateralRelation"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#hasNiece">
+
+  <owl:ObjectProperty rdf:ID="hasNiece">
     <ifi:TV_pl>hasNiece</ifi:TV_pl>
     <ifi:TV_sg>hasNieces</ifi:TV_sg>
     <ifi:TV_vbg>hasNieced</ifi:TV_vbg>
@@ -692,7 +732,7 @@
     <rdfs:subPropertyOf rdf:resource="#hasJuniorCollateralRelation"/>
   </owl:ObjectProperty>
 
-  <owl:ObjectProperty rdf:about="#hasNumberOfChildren">
+  <owl:ObjectProperty rdf:ID="hasNumberOfChildren">
     <ifi:TV_pl>hasNumberOfChildren</ifi:TV_pl>
     <ifi:TV_sg>hasNumberOfChildrens</ifi:TV_sg>
     <ifi:TV_vbg>hasNumberOfChildrened</ifi:TV_vbg>
@@ -700,7 +740,7 @@
     <rdfs:subPropertyOf rdf:resource="#hasChild"/>
   </owl:ObjectProperty>
 
- <owl:IrreflexiveProperty rdf:about="#hasOtherFamilyRelation">
+ <owl:IrreflexiveProperty rdf:ID="hasOtherFamilyRelation">
     <ifi:TV_pl>hasOtherFamilyRelation</ifi:TV_pl>
     <ifi:TV_sg>hasOtherFamilyRelations</ifi:TV_sg>
     <ifi:TV_vbg>hasOtherFamilyRelationed</ifi:TV_vbg>
@@ -709,7 +749,8 @@
     <rdfs:range rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
   </owl:IrreflexiveProperty>
-  <owl:AsymmetricProperty rdf:about="#hasParent">
+
+  <owl:AsymmetricProperty rdf:ID="hasParent">
     <ifi:TV_pl>hasParent</ifi:TV_pl>
     <ifi:TV_sg>hasParents</ifi:TV_sg>
     <ifi:TV_vbg>hasParented</ifi:TV_vbg>
@@ -719,7 +760,8 @@
     <rdfs:range rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
   </owl:AsymmetricProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasPartner">
+
+  <owl:IrreflexiveProperty rdf:ID="hasPartner">
     <ifi:TV_pl>hasPartner</ifi:TV_pl>
     <ifi:TV_sg>hasPartners</ifi:TV_sg>
     <ifi:TV_vbg>hasPartnered</ifi:TV_vbg>
@@ -730,7 +772,7 @@
     <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
   </owl:IrreflexiveProperty>
 
-  <owl:AsymmetricProperty rdf:about="#hasRelationsWithPublisher">
+  <owl:AsymmetricProperty rdf:ID="hasRelationsWithPublisher">
     <ifi:TV_pl>hasRelationsWithPublisher</ifi:TV_pl>
     <ifi:TV_sg>hasRelationsWithPublishers</ifi:TV_sg>
     <ifi:TV_vbg>hasRelationsWithPublishered</ifi:TV_vbg>
@@ -742,7 +784,7 @@
   </owl:AsymmetricProperty>
 
 
-  <owl:IrreflexiveProperty rdf:about="#hasRelationship">
+  <owl:IrreflexiveProperty rdf:ID="hasRelationship">
     <ifi:TV_pl>hasRelationship</ifi:TV_pl>
     <ifi:TV_sg>hasRelationships</ifi:TV_sg>
     <ifi:TV_vbg>hasRelationshiped</ifi:TV_vbg>
@@ -751,7 +793,7 @@
     <rdfs:range rdf:resource="#Person"/>
   </owl:IrreflexiveProperty>
 
-  <owl:AsymmetricProperty rdf:about="#hasSibling">
+  <owl:AsymmetricProperty rdf:ID="hasSibling">
     <ifi:TV_pl>hasSibling</ifi:TV_pl>
     <ifi:TV_sg>hasSiblings</ifi:TV_sg>
     <ifi:TV_vbg>hasSiblinged</ifi:TV_vbg>
@@ -761,7 +803,7 @@
     <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
   </owl:AsymmetricProperty>
 
-  <owl:AsymmetricProperty rdf:about="#hasSister">
+  <owl:AsymmetricProperty rdf:ID="hasSister">
     <ifi:TV_pl>hasSister</ifi:TV_pl>
     <ifi:TV_sg>hasSisters</ifi:TV_sg>
     <ifi:TV_vbg>hasSistered</ifi:TV_vbg>
@@ -773,7 +815,7 @@
     <rdfs:subPropertyOf rdf:resource="#hasSibling"/>
   </owl:AsymmetricProperty>
 
-  <owl:AsymmetricProperty rdf:about="#hasSon">
+  <owl:AsymmetricProperty rdf:ID="hasSon">
     <ifi:TV_pl>hasSon</ifi:TV_pl>
     <ifi:TV_sg>hasSons</ifi:TV_sg>
     <ifi:TV_vbg>hasSoned</ifi:TV_vbg>
@@ -784,7 +826,7 @@
      
     <rdfs:subPropertyOf rdf:resource="#hasChild"/>
   </owl:AsymmetricProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasSpouse">
+  <owl:IrreflexiveProperty rdf:ID="hasSpouse">
     <ifi:TV_pl>hasSpouse</ifi:TV_pl>
     <ifi:TV_sg>hasSpouses</ifi:TV_sg>
     <ifi:TV_vbg>hasSpoused</ifi:TV_vbg>
@@ -794,7 +836,7 @@
     <rdfs:range rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
   </owl:IrreflexiveProperty>
-  <owl:AsymmetricProperty rdf:about="#hasStandardName">
+  <owl:AsymmetricProperty rdf:ID="hasStandardName">
     <ifi:TV_pl>hasStandardName</ifi:TV_pl>
     <ifi:TV_sg>hasStandardNames</ifi:TV_sg>
     <ifi:TV_vbg>hasStandardNamed</ifi:TV_vbg>
@@ -802,7 +844,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:subPropertyOf rdf:resource="#hasName"/>
   </owl:AsymmetricProperty>
- <owl:AsymmetricProperty rdf:about="#hasStepChild">
+ <owl:AsymmetricProperty rdf:ID="hasStepChild">
     <ifi:TV_pl>hasStepChild</ifi:TV_pl>
     <ifi:TV_sg>hasStepChilds</ifi:TV_sg>
     <ifi:TV_vbg>hasStepChilded</ifi:TV_vbg>
@@ -812,7 +854,7 @@
     <rdfs:range rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasStepFamily"/>
   </owl:AsymmetricProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasStepFamily">
+  <owl:IrreflexiveProperty rdf:ID="hasStepFamily">
     <ifi:TV_pl>hasStepFamily</ifi:TV_pl>
     <ifi:TV_sg>hasStepFamilies</ifi:TV_sg>
     <ifi:TV_vbg>hasStepFamilied</ifi:TV_vbg>
@@ -820,7 +862,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
     <rdfs:subPropertyOf rdf:resource="#hasFamily"/>
   </owl:IrreflexiveProperty>
-  <owl:AsymmetricProperty rdf:about="#hasStepParent">
+  <owl:AsymmetricProperty rdf:ID="hasStepParent">
     <ifi:TV_pl>hasStepParent</ifi:TV_pl>
     <ifi:TV_sg>hasStepParents</ifi:TV_sg>
     <ifi:TV_vbg>hasStepParented</ifi:TV_vbg>
@@ -831,7 +873,7 @@
     <rdfs:subPropertyOf rdf:resource="#hasStepFamily"/>
     <owl:inverseOf rdf:resource="#hasStepChild"/>
   </owl:AsymmetricProperty>
-  <owl:IrreflexiveProperty rdf:about="#hasStepSibling">
+  <owl:IrreflexiveProperty rdf:ID="hasStepSibling">
     <ifi:TV_pl>hasStepSibling</ifi:TV_pl>
     <ifi:TV_sg>hasStepSiblings</ifi:TV_sg>
     <ifi:TV_vbg>hasStepSiblinged</ifi:TV_vbg>
@@ -841,7 +883,7 @@
     <rdfs:range rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#hasStepFamily"/>
   </owl:IrreflexiveProperty>
-  <owl:AsymmetricProperty rdf:about="#hasStepbrother">
+  <owl:AsymmetricProperty rdf:ID="hasStepbrother">
     <ifi:TV_pl>hasStepbrother</ifi:TV_pl>
     <ifi:TV_sg>hasStepbrothers</ifi:TV_sg>
     <ifi:TV_vbg>hasStepbrothered</ifi:TV_vbg>
@@ -852,7 +894,7 @@
      
     <rdfs:subPropertyOf rdf:resource="#hasStepSibling"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasStepdaughter">
+  <owl:AsymmetricProperty rdf:ID="hasStepdaughter">
     <ifi:TV_pl>hasStepdaughter</ifi:TV_pl>
     <ifi:TV_sg>hasStepdaughters</ifi:TV_sg>
     <ifi:TV_vbg>hasStepdaughtered</ifi:TV_vbg>
@@ -864,7 +906,7 @@
     <rdfs:subPropertyOf rdf:resource="#hasStepChild"/>
   </owl:AsymmetricProperty>
 
- <owl:AsymmetricProperty rdf:about="#hasStepfather">
+ <owl:AsymmetricProperty rdf:ID="hasStepfather">
     <ifi:TV_pl>hasStepfather</ifi:TV_pl>
     <ifi:TV_sg>hasStepfathers</ifi:TV_sg>
     <ifi:TV_vbg>hasStepfathered</ifi:TV_vbg>
@@ -875,7 +917,7 @@
      
     <rdfs:subPropertyOf rdf:resource="#hasStepParent"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasStepmother">
+  <owl:AsymmetricProperty rdf:ID="hasStepmother">
     <ifi:TV_pl>hasStepmother</ifi:TV_pl>
     <ifi:TV_sg>hasStepmothers</ifi:TV_sg>
     <ifi:TV_vbg>hasStepmothered</ifi:TV_vbg>
@@ -886,7 +928,7 @@
      
     <rdfs:subPropertyOf rdf:resource="#hasStepParent"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#hasStepsister">
+  <owl:AsymmetricProperty rdf:ID="hasStepsister">
     <ifi:TV_pl>hasStepsister</ifi:TV_pl>
     <ifi:TV_sg>hasStepsisters</ifi:TV_sg>
     <ifi:TV_vbg>hasStepsistered</ifi:TV_vbg>
@@ -898,7 +940,7 @@
     <rdfs:subPropertyOf rdf:resource="#hasStepSibling"/>
   </owl:AsymmetricProperty>
 
-  <owl:AsymmetricProperty rdf:about="#hasStepson">
+  <owl:AsymmetricProperty rdf:ID="hasStepson">
     <ifi:TV_pl>hasStepson</ifi:TV_pl>
     <ifi:TV_sg>hasStepsons</ifi:TV_sg>
     <ifi:TV_vbg>hasStepsoned</ifi:TV_vbg>
@@ -910,7 +952,7 @@
     <rdfs:subPropertyOf rdf:resource="#hasStepChild"/>
   </owl:AsymmetricProperty>
 
-  <owl:AsymmetricProperty rdf:about="#hasUncle">
+  <owl:AsymmetricProperty rdf:ID="hasUncle">
     <ifi:TV_pl>hasUncle</ifi:TV_pl>
     <ifi:TV_sg>hasUncles</ifi:TV_sg>
     <ifi:TV_vbg>hasUncled</ifi:TV_vbg>
@@ -921,7 +963,7 @@
     <rdfs:subPropertyOf rdf:resource="#hasSeniorCollateralRelation"/>
   </owl:AsymmetricProperty>
 
-  <owl:IrreflexiveProperty rdf:about="#hasWife">
+  <owl:IrreflexiveProperty rdf:ID="hasWife">
     <ifi:TV_pl>hasWife</ifi:TV_pl>
     <ifi:TV_sg>hasWifes</ifi:TV_sg>
     <ifi:TV_vbg>hasWifed</ifi:TV_vbg>
@@ -931,7 +973,7 @@
     <rdfs:subPropertyOf rdf:resource="#hasSpouse"/>
   </owl:IrreflexiveProperty>
 
-  <owl:IrreflexiveProperty rdf:about="#livesWith">
+  <owl:IrreflexiveProperty rdf:ID="livesWith">
     <ifi:TV_pl>livesWith</ifi:TV_pl>
     <ifi:TV_sg>livesWiths</ifi:TV_sg>
     <ifi:TV_vbg>livesWithed</ifi:TV_vbg>
@@ -943,7 +985,7 @@
 
 
 
-  <owl:Class rdf:about="#Organization">
+  <owl:Class rdf:ID="Organization">
     <ifi:CN_pl>Organizations</ifi:CN_pl>
     <ifi:CN_sg>Organization</ifi:CN_sg>
    <owl:sameAs rdf:resource="http://xmlns.com/foaf/0.1/Organization"/>
@@ -951,25 +993,25 @@
   </owl:Class>
 
 
-  <owl:Class rdf:about="#Date">
+  <owl:Class rdf:ID="Date">
     <ifi:CN_pl>Dates</ifi:CN_pl>
     <ifi:CN_sg>Date</ifi:CN_sg>
   </owl:Class>
 
 
-  <owl:Class rdf:about="#RaceColour">
+  <owl:Class rdf:ID="RaceColour">
     <ifi:CN_pl>RaceColours</ifi:CN_pl>
     <ifi:CN_sg>RaceColour</ifi:CN_sg>
     <rdfs:subClassOf rdf:resource="#Person"/>
   </owl:Class>
 
-  <owl:Class rdf:about="#Work">
+  <owl:Class rdf:ID="Work">
     <ifi:CN_pl>Works</ifi:CN_pl>
     <ifi:CN_sg>Work</ifi:CN_sg>
 <owl:sameAs rdf:resource="http://xmlns.com/foaf/0.1/Document"/>
   </owl:Class>
 
-  <owl:AsymmetricProperty rdf:about="#bestKnownWork">
+  <owl:AsymmetricProperty rdf:ID="bestKnownWork">
     <ifi:TV_pl>bestKnownWork</ifi:TV_pl>
     <ifi:TV_sg>bestKnownWorks</ifi:TV_sg>
     <ifi:TV_vbg>bestKnownWorked</ifi:TV_vbg>
@@ -979,7 +1021,7 @@
     <rdfs:range rdf:resource="#Work"/>
     <rdfs:subPropertyOf rdf:resource="#toBeSorted"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#bestKnownWorkConnectionToAddress">
+  <owl:AsymmetricProperty rdf:ID="bestKnownWorkConnectionToAddress">
     <ifi:TV_pl>bestKnownWorkAddress</ifi:TV_pl>
     <ifi:TV_sg>bestKnownWorkAddresses</ifi:TV_sg>
     <ifi:TV_vbg>bestKnownWorkAddressed</ifi:TV_vbg>
@@ -989,7 +1031,7 @@
     <rdfs:range rdf:resource="#Address"/>
     <rdfs:subPropertyOf rdf:resource="#bestKnownWorkConnectionToSettlement"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#bestKnownWorkConnectionToDate">
+  <owl:AsymmetricProperty rdf:ID="bestKnownWorkConnectionToDate">
     <ifi:TV_pl>bestKnownWorkDate</ifi:TV_pl>
     <ifi:TV_sg>bestKnownWorkDates</ifi:TV_sg>
     <ifi:TV_vbg>bestKnownWorkDated</ifi:TV_vbg>
@@ -998,7 +1040,7 @@
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#bestKnownWork"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#bestKnownWorkConnectionToGeog">
+  <owl:AsymmetricProperty rdf:ID="bestKnownWorkConnectionToGeog">
     <ifi:TV_pl>bestKnownWorkGeog</ifi:TV_pl>
     <ifi:TV_sg>bestKnownWorkGeogs</ifi:TV_sg>
     <ifi:TV_vbg>bestKnownWorkGeoged</ifi:TV_vbg>
@@ -1008,7 +1050,7 @@
     <rdfs:range rdf:resource="#Geog"/>
     <rdfs:subPropertyOf rdf:resource="#bestKnownWork"/>
   </owl:AsymmetricProperty>
-  <owl:ObjectProperty rdf:about="#bestKnownWorkConnectionToOrganization">
+  <owl:ObjectProperty rdf:ID="bestKnownWorkConnectionToOrganization">
     <ifi:TV_pl>bestKnownWorkConnectionToOrganization</ifi:TV_pl>
     <ifi:TV_sg>bestKnownWorkConnectionToOrganizations</ifi:TV_sg>
     <ifi:TV_vbg>bestKnownWorkConnectionToOrganizationed</ifi:TV_vbg>
@@ -1016,7 +1058,7 @@
     <rdfs:range rdf:resource="#Organization"/>
     <rdfs:subPropertyOf rdf:resource="#bestKnownWork"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#bestKnownWorkConnectionToPerson">
+  <owl:ObjectProperty rdf:ID="bestKnownWorkConnectionToPerson">
     <ifi:TV_pl>bestKnownWorkConnectionToPerson</ifi:TV_pl>
     <ifi:TV_sg>bestKnownWorkConnectionToPersons</ifi:TV_sg>
     <ifi:TV_vbg>bestKnownWorkConnectionToPersoned</ifi:TV_vbg>
@@ -1024,7 +1066,7 @@
     <rdfs:range rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#bestKnownWork"/>
   </owl:ObjectProperty>
-  <owl:AsymmetricProperty rdf:about="#bestKnownWorkConnectionToRegion">
+  <owl:AsymmetricProperty rdf:ID="bestKnownWorkConnectionToRegion">
     <ifi:TV_pl>bestKnownWorkRegion</ifi:TV_pl>
     <ifi:TV_sg>bestKnownWorkRegions</ifi:TV_sg>
     <ifi:TV_vbg>bestKnownWorkRegioned</ifi:TV_vbg>
@@ -1034,7 +1076,7 @@
     <rdfs:range rdf:resource="#Region"/>
     <rdfs:subPropertyOf rdf:resource="#bestKnownWorkConnectionToGeog"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#bestKnownWorkConnectionToSettlement">
+  <owl:AsymmetricProperty rdf:ID="bestKnownWorkConnectionToSettlement">
     <ifi:TV_pl>bestKnownWorkSettlement</ifi:TV_pl>
     <ifi:TV_sg>bestKnownWorkSettlements</ifi:TV_sg>
     <ifi:TV_vbg>bestKnownWorkSettlemented</ifi:TV_vbg>
@@ -1044,13 +1086,13 @@
     <rdfs:range rdf:resource="#Settlement"/>
     <rdfs:subPropertyOf rdf:resource="#bestKnownWorkConnectionToRegion"/>
   </owl:AsymmetricProperty>
-  <owl:ObjectProperty rdf:about="#birth">
+  <owl:ObjectProperty rdf:ID="birth">
     <ifi:TV_pl>hasBirth</ifi:TV_pl>
     <ifi:TV_sg>hasBirths</ifi:TV_sg>
     <ifi:TV_vbg>hasBirthed</ifi:TV_vbg>
     <rdfs:subPropertyOf rdf:resource="#hasEvent"/>
   </owl:ObjectProperty>
-  <owl:AsymmetricProperty rdf:about="#birthConnectionToAddress">
+  <owl:AsymmetricProperty rdf:ID="birthConnectionToAddress">
     <ifi:TV_pl>bornAtAddress</ifi:TV_pl>
     <ifi:TV_sg>bornAtAddresses</ifi:TV_sg>
     <ifi:TV_vbg>bornAtAddressed</ifi:TV_vbg>
@@ -1060,7 +1102,7 @@
     <rdfs:range rdf:resource="#Address"/>
     <rdfs:subPropertyOf rdf:resource="#birthConnectionToSettlement"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#birthConnectionToDate">
+  <owl:AsymmetricProperty rdf:ID="birthConnectionToDate">
     <ifi:TV_pl>hasBirthDate</ifi:TV_pl>
     <ifi:TV_sg>hasBirthDates</ifi:TV_sg>
     <ifi:TV_vbg>hasBirthDated</ifi:TV_vbg>
@@ -1069,7 +1111,7 @@
     <rdfs:domain rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#birth"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#birthConnectionToGeog">
+  <owl:AsymmetricProperty rdf:ID="birthConnectionToGeog">
     <ifi:TV_pl>hasBirthLocationGeog</ifi:TV_pl>
     <ifi:TV_sg>hasBirthLocationGeogs</ifi:TV_sg>
     <ifi:TV_vbg>hasBirthLocationGeoged</ifi:TV_vbg>
@@ -1079,7 +1121,7 @@
     <rdfs:range rdf:resource="#Geog"/>
     <rdfs:subPropertyOf rdf:resource="#birthConnectionToLocation"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#birthConnectionToLocation">
+  <owl:AsymmetricProperty rdf:ID="birthConnectionToLocation">
     <ifi:TV_pl>hasBirthLocation</ifi:TV_pl>
     <ifi:TV_sg>hasBirthLocations</ifi:TV_sg>
     <ifi:TV_vbg>hasBirthLocationed</ifi:TV_vbg>
@@ -1089,7 +1131,7 @@
     <rdfs:range rdf:resource="#Place"/>
     <rdfs:subPropertyOf rdf:resource="#birth"/>
   </owl:AsymmetricProperty>
-  <owl:ObjectProperty rdf:about="#birthConnectionToOrganization">
+  <owl:ObjectProperty rdf:ID="birthConnectionToOrganization">
     <ifi:TV_pl>birthConnectionToOrganization</ifi:TV_pl>
     <ifi:TV_sg>birthConnectionToOrganizations</ifi:TV_sg>
     <ifi:TV_vbg>birthConnectionToOrganizationed</ifi:TV_vbg>
@@ -1097,7 +1139,7 @@
     <rdfs:range rdf:resource="#Organization"/>
     <rdfs:subPropertyOf rdf:resource="#birth"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#birthConnectionToPerson">
+  <owl:ObjectProperty rdf:ID="birthConnectionToPerson">
     <ifi:TV_pl>birthConnectionToPerson</ifi:TV_pl>
     <ifi:TV_sg>birthConnectionToPersons</ifi:TV_sg>
     <ifi:TV_vbg>birthConnectionToPersoned</ifi:TV_vbg>
@@ -1106,7 +1148,7 @@
     <rdfs:range rdf:resource="#Person"/>
     <rdfs:subPropertyOf rdf:resource="#birth"/>
   </owl:ObjectProperty>
-  <owl:AsymmetricProperty rdf:about="#birthConnectionToRegion">
+  <owl:AsymmetricProperty rdf:ID="birthConnectionToRegion">
     <ifi:TV_pl>hasBirthLocationRegion</ifi:TV_pl>
     <ifi:TV_sg>hasBirthLocationRegions</ifi:TV_sg>
     <ifi:TV_vbg>hasBirthLocationRegioned</ifi:TV_vbg>
@@ -1116,7 +1158,7 @@
     <rdfs:range rdf:resource="#Region"/>
     <rdfs:subPropertyOf rdf:resource="#birthConnectionToGeog"/>
   </owl:AsymmetricProperty>
-  <owl:AsymmetricProperty rdf:about="#birthConnectionToSettlement">
+  <owl:AsymmetricProperty rdf:ID="birthConnectionToSettlement">
     <ifi:TV_pl>hasBirthLocationSettlement</ifi:TV_pl>
     <ifi:TV_sg>hasBirthLocationSettlements</ifi:TV_sg>
     <ifi:TV_vbg>hasBirthLocationSettlemented</ifi:TV_vbg>
@@ -1126,13 +1168,13 @@
     <rdfs:range rdf:resource="#Settlement"/>
     <rdfs:subPropertyOf rdf:resource="#birthConnectionToRegion"/>
   </owl:AsymmetricProperty>
-  <owl:ObjectProperty rdf:about="#death">
+  <owl:ObjectProperty rdf:ID="death">
     <ifi:TV_pl>hasDeath</ifi:TV_pl>
     <ifi:TV_sg>hasDeaths</ifi:TV_sg>
     <ifi:TV_vbg>hasDeathed</ifi:TV_vbg>
     <rdfs:subPropertyOf rdf:resource="#hasEvent"/>
   </owl:ObjectProperty>
-  <owl:AsymmetricProperty rdf:about="#deathConnectionToAddress">
+  <owl:AsymmetricProperty rdf:ID="deathConnectionToAddress">
     <ifi:TV_pl>diedAtAddress</ifi:TV_pl>
     <ifi:TV_sg>diedAtAddresses</ifi:TV_sg>
     <ifi:TV_vbg>diedAtAddressed</ifi:TV_vbg>
