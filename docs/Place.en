@@ -1,0 +1,33 @@
+<p>
+
+
+A Place is a immovable location that may be named, habited or not and
+incorporated or not.  The chief difference between a place and region is the
+amount of surface area.
+
+A place is a problematic thing, ill defined agiants an area. 
+
+
+The Geonames definition of a place is a populated location, through it might
+be abandoned.
+
+The DBPedua notion of <a href="http://dbpedia.org/ontology/Place">place</a> is also compatible.
+
+Schema.org downgrades this to "Somewhat fixed" for <a href="http://schema.org/Place">Place</a>
+
+A feature within a subset of place in schema.rog
+
+#Feature versus a GeonamesFeature
+
+Cape Breton is defined as an Area and an administrative ara.
+http://sws.geonames.org/5915566/about.rdf Parks, Area. #L
+http://sws.geonames.org/5915565/about.rdf Admin Ara.A.ADMD w/o administration.
+
+
+Direct descenent of the 
+   <owl:equivalentClass rdf:resource="http://www.geonames.org/ontology#Feature"/>
+    <owl:equivalentClass rdf:resource="http://dbpedia.org/ontology/Place"/>
+    <owl:equivalentClass rdf:resource="http://schema.org/Place"/>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/
+    <owl:sameAs rdf:resource="http://geovocab.org/spatial#Feature"/>
+    <owl:sameAs rdf:resource="http://www.opengis.net/ont/geosparql#Feature"/>
