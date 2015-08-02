@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html 
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:mvcb="http://webns.net/mvcb/"
+  xml:lang="en"
+> 
+
+  <head>
+    <title>ONTOLOGY_NAME Ontology Specification - ONTOLOGY_VERSION</title>
+    <meta http-equiv="content-type" content="text/xhtml+xml; charset=utf-8" />
+    <!-- With Apologies to Dan Brickley and Libby Miller -->
+    <link href="xmlns-style.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet"  type="text/css" />
+    <link rel="mvcb:generatorAgent" type="application/rdf+xml" title="DOAP" href="http://rdfohloh.wikier.org/project/specgen" />
+  </head>
+
+  <body>
+
+    <h1 id="title">ONTOLOGY_NAME Ontology Specification - ONTOLOGY_VERSION</h1>
+
+    <h2 id="subtitle">LONGHAND_DESCRIPTION</h2><img src="ONTOLOGY_LOGO" align="right">
+
+    <h3 id="mymw-doctype">Working Draft &mdash; ONTOLOGY_LONGDATE</h3>
+
+    <dl>
+
+      <dt>This version:</dt>
+      <dd><a
+      href="http://www.cwrc.ca/ontologies/ONTOLOGY_NAME-ONTOLOGY_VERSION.html">http://www.cwrc.ca/ontologies/ONTOLOGY_NAME-ONTOLOGY_VERSION.html</a>
+     (<a href="http://www.cwrc.ca/ontologies/ONTOLOGY_NAME-ONTOLOGY_VERSION.owl">owl</a>)</dd>
+
+      <dt>Latest version:</dt>
+      <dd><a
+      href="http://www.cwrc.ca/ontologies/ONTOLOGY_NAME.html">http://www.cwrc.ca/ontologies/ONTOLOGY_NAME.html</a>
+      (<a href="http://www.cwrc.ca/ontologies/ONTOLOGY_NAME.owl">owl</a>)
+      </dd>
+
+      <dt>Previous version:</dt>
+      <dd><a href="http://www.cwrc.ca/ontologies/ONTOLOGY_NAME-PREVIOUS_ONTOLOGY.html">http://www.cwrc.ca/ontologies/ONTOLOGY_NAME-PREVIOUS_ONTOLOGY.html</a>
+      (<a href="http://www.cwrc.ca/ontologies/ONTOLOGY_NAME-PREVIOUS_ONTOLOGY.owl">owl</a>)
+      </dd>
+      <dt>Last Update: ONTOLOGY_VERSION</dt>
+      <dd>Date: ONTOLOGY_LONGDATE</dd>
+
+      <dt>Authors:</dt>
+      <dd>Susan Brown, Project Lead, Canadian Writing Research Collaboratory</dd>
+      <dd>John Simpson, Compute Canada</dd>
+      <dd>Robert Warren, Canadian Writing Research Collaboratory</dd>
+      <dd>Constance Crompton,  Canadian Writing Research Collaboratory</dd> 
+
+    </dl>
+
+    <p class="copyright"><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">
+    <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" />
+    </a><br/>This work is licensed under a 
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons / Attribution-ShareAlike 3.0 Unported License</a>.</p>
+
+    <!-- ===================================================================== -->
+
+    <hr />
+    <h2 id="abstract">Abstract</h2>
+    <p>LONGHAND_DESCRIPTION</p>
+
+    <h2 id="status">Status of this Document</h2>
+    <p>
+      This document lists all classes, properties and instances used by the Linked Open Data sets published by the 
+      Canadian Writing Research Collaboratory.</p>
+      Comments are welcome at <a href="mailto:cwrc@ualberta.ca">cwrc@ualberta.ca</a>.
+    </p>
+    <h2 id="contents">Table of Contents</h2>
+    <ol>    
+      <li><a href="#ref">References</a></li>
+    </ol>
+    <hr />
+    <h2 id="intro">1 Introduction</h2>
+    <h2 id="intro">2 Policies</h2>
+    <p>The following policies are followed by this ontology</p>
+    <ol>
+     <li>All terms within the ontology are typed as skos:Concepts irrespective of their own ontological structures.</li>
+     <li>Because of the CWRC ontology status as both an ontological construct and a dataset of instances, it is defined as both
+     an OWL ontology and a <a href="#datasetdefinition">VOID dataset</a>.</li>
+     <li>Deprecated or disused terms within the ontology are never removed outright from the ontology file but marked as such in
+     both machine and human readable formats. Whenever possible machine readable equivalences are listed.</li> 
+     <li>To facilitate widespread use of the ontology, instances of an owl class are both typed as such as well as encoded as
+     skos:Concepts that are part of a skos:ConceptScheme.
+    </ol>
+    
+    <h2 id="intro">3 Personal Names</h2>
+    <p>The CWRC makes use of foaf:Person as its basic ontological representation for people. Arguably, foaf is the most
+    successful representation for persons in current use and this ontology is in line with this practice. However, the limited
+    properties supplied and the ambiguity produced in different culture to represent the actual name of the person remain
+    unresolved. Furthermore, as the CWRC deals with many concurrent resources that represent the same entity in different ways,
+    the simple foaf:name property was judged insufficient.</p>
+    <p>The CWRC ontology provides a number of name related classes that can be used to represent the different names of a person
+    according to different sources:<a href="#NameAtBirth">Name at Birth</a>, <a href="#MaidenName">Maiden Name</a>, <a
+    href="#LegalName">Legal Name</a> and <a href="#PenName">Pen Name</a>. These classes extend the skos-xl W3 ontology and enable
+    the use of the provenance ontology to link the name to other source datasets.</p>
+    
+   
+
+      <h3 id="#basic">Basic ontological objects</h3>   
+    <!-- The list of classes and properties goes here -->
+    %s
+    <!-- End of the terms list -->
+    <h3 id="#onto-xref">Ontology cross reference</h3>    
+
+    <!-- The following is the script-generated list of classes and properties -->
+    %s
+    <!-- End of the terms list -->
+
+    <h2 id="#conclusion">Conclusion and Future Work</h2>
+    
+    <h2 id="references">References</h2>
+        
+        m4_include(ONTOLOGY_NAME-ONTOLOGY_DATE-citations.html)    
+    <h2 id="version_history">Version History</h2>
+
+    <ul>
+    <li>0.2 - Minor fixes.</li>
+    <li>0.1 - Initial unstable release.</li>
+    <ul>
+    </ul>
+    
+    <h2 id="TODO">TODO</h2>
+       <ul>
+       </ul>
+                       
+  </body>
+
+</html>
+

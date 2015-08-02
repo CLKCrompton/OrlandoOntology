@@ -425,6 +425,118 @@
   <owl:equivalentClass rdf:resource="#Transgender"/>
  </owl:deprecatedClass>
 
+  <skos:Concept rdf:about="#Bigamist">
+   <rdfs:label xml:lang="en">Bigamist</rdfs:label>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="#RomanticFriends">
+   <rdfs:label xml:lang="en">Romantic Friends</rdfs:label>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
+  </skos:Concept>
+
+
+  <skos:Concept rdf:about="#Urning">
+   <rdfs:label xml:lang="en">Urning</rdfs:label>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
+  </skos:Concept>
+
+
+  <skos:Concept rdf:about="#BostonMarriage">
+   <rdfs:label xml:lang="en">Boston Marriage</rdfs:label>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="#Invert">
+   <rdfs:label xml:lang="en">Invert</rdfs:label>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="#TransPre1990">
+   <rdfs:label xml:lang="en">Trans (pre 1990)</rdfs:label>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="#TransPost1990">
+   <rdfs:label xml:lang="en">Trans (post 1990)</rdfs:label>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="#WomenIdentifiedWoman">
+   <rdfs:label xml:lang="en">Women Identified Woman</rdfs:label>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="#Bear">
+   <rdfs:label xml:lang="en">Bear</rdfs:label>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="#GenderQueer">
+   <rdfs:label xml:lang="en">GenderQueer</rdfs:label>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="#GenderQueer">
+   <rdfs:label xml:lang="en">GenderQueer</rdfs:label>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="#Femme">
+   <rdfs:label xml:lang="en">Femme</rdfs:label>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
+  </skos:Concept>
+
+  <skos:Concept rdf:about="#Butch">
+   <rdfs:label xml:lang="en">Butch</rdfs:label>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <rdfs:isDefinedBy rdf:resource="https://raw.githubusercontent.com/cwrc/OrlandoOntology/master/OrlandoOntology#"/>
+   <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+   <void:inDataset rdf:resource="#datasetdefinition"/>
+  </skos:Concept>
+
+
+
+
+
+
+
 
   <!-- Basic relationships -->
   <owl:ObjectProperty rdf:ID="hasFamily">
